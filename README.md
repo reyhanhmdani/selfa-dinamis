@@ -1,59 +1,88 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Sayf El Falah V2 — Web Portal
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Selamat datang di repository resmi Web Portal **Sayf El Falah**. Website ini dirancang untuk memberikan informasi lengkap mengenai ekosistem pendidikan di Sayf El Falah, mulai dari tingkat KB/TK, SD Alam, hingga Pondok Pesantren.
 
-## About Laravel
+## 🚀 Deskripsi Proyek
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Website ini dibangun menggunakan **Laravel 11** dan **Vite** dengan sistem desain kustom yang menggabungkan kekuatan **Tailwind CSS** untuk utilitas dan **Vanilla CSS** untuk komponen premium. Fokus utama dari pengembangan ini adalah estetika yang kaya, performa yang optimal, dan pengalaman pengguna yang interaktif.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 🏫 Halaman Utama
+- **Home**: Beranda utama sekolah.
+- **KB & TK**: Informasi khusus untuk jenjang pendidikan usia dini.
+- **SD Alam**: Informasi mengenai sekolah dasar berbasis alam dan Al-Qur'an.
+- **Pondok Pesantren**: Informasi mengenai jenjang pendidikan pesantren.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## ✨ Fitur Unggulan
 
-## Learning Laravel
+- **Premium Design System**: Antarmuka modern dengan glassmorphism, animasi mikro, dan skema warna yang harmonis.
+- **PPDB Section**: Sistem informasi pendaftaran yang interaktif dan minimalis.
+- **School News Slider**: Slider berita sekolah yang responsif dan mendukung drag/swipe.
+- **Integrated Gallery**: Galeri kegiatan siswa dengan fitur lightbox.
+- **Performance Optimized**: Menggunakan Vite untuk manajemen aset dan teknik lazy-loading untuk gambar.
+- **Responsive Layout**: Tampilan yang menyesuaikan dengan sempurna di perangkat desktop, tablet, maupun mobile.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## 🛠️ Persyaratan Sistem
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Pastikan perangkat Anda sudah terinstall:
+- PHP >= 8.2
+- Composer
+- Node.js & NPM
+- Database (MySQL/SQLite)
 
-## Laravel Sponsors
+## 💻 Langkah-Langkah Instalasi
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Ikuti langkah berikut untuk menjalankan proyek di lingkungan lokal Anda:
 
-### Premium Partners
+1. **Clone Repository**
+   ```bash
+   git clone https://github.com/username/selfa-dynamic.git
+   cd selfa-dynamic
+   ```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+2. **Install Dependensi PHP**
+   ```bash
+   composer install
+   ```
 
-## Contributing
+3. **Install Dependensi JavaScript**
+   ```bash
+   npm install
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+4. **Konfigurasi Environment**
+   Salin file `.env.example` menjadi `.env` dan atur koneksi database Anda.
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-## Code of Conduct
+5. **Link Storage**
+   Buat symbolic link untuk folder storage agar file publik dapat diakses.
+   ```bash
+   php artisan storage:link
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+6. **Migrasi Database** (Opsional jika ada database)
+   ```bash
+   php artisan migrate
+   ```
 
-## Security Vulnerabilities
+7. **Jalankan Aplikasi**
+   Buka dua terminal:
+   - Terminal 1 (Vite): `npm run dev`
+   - Terminal 2 (Laravel): `php artisan serve`
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Akses aplikasi melalui `http://localhost:8000`.
 
-## License
+## 📦 Build untuk Produksi
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Jika ingin melakukan deployment:
+```bash
+npm run build
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+```
+
+---
+Dibuat dengan ❤️ oleh Tim Sayf El Falah.
