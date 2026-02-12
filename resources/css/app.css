@@ -1,0 +1,24 @@
+@import 'tailwindcss';
+@import './style.css';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+    --font-heading: 'Plus Jakarta Sans', sans-serif;
+
+    /* Colors */
+    --color-primary: #00ab66;
+    --color-primary-light: #00c3fe;
+    --color-secondary: #1a365d;
+    --color-accent: #f6ad55;
+    --color-biru: #1e3a8a;
+    --color-biru-muda: #3b82f6;
+
+    /* Spacing & Radius from style.css can also be added if needed, 
+       but colors and fonts are most critical for hybrid use. */
+}
