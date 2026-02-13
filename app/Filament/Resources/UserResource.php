@@ -14,24 +14,35 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Actions;
 use Illuminate\Support\Facades\Hash;
-use Filament\Tables\Actions\EditAction;
-use Filament\Tables\Actions\DeleteAction;
-use Filament\Tables\Actions\BulkActionGroup;
-use Filament\Tables\Actions\DeleteBulkAction;
 
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-users';
+    public static function getNavigationIcon(): string
+    {
+        return 'heroicon-o-users';
+    }
 
-    protected static ?string $navigationLabel = 'User Management';
+    public static function getNavigationLabel(): string
+    {
+        return 'User Management';
+    }
 
-    protected static ?string $modelLabel = 'User';
+    public static function getModelLabel(): string
+    {
+        return 'User';
+    }
 
-    protected static ?string $pluralModelLabel = 'Users';
+    public static function getPluralModelLabel(): string
+    {
+        return 'Users';
+    }
 
-    protected static ?string $navigationGroup = 'Settings';
+    public static function getNavigationGroup(): ?string
+    {
+        return 'Settings';
+    }
 
     protected static ?int $navigationSort = 3;
 
@@ -105,12 +116,12 @@ class UserResource extends Resource
                 //
             ])
             ->actions([
-                EditAction::make(),
-                DeleteAction::make(),
+                Actions\EditAction::make(),
+                Actions\DeleteAction::make(),
             ])
             ->bulkActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
+                Actions\BulkActionGroup::make([
+                    Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }
