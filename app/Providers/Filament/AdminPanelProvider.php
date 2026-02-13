@@ -27,6 +27,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->profile()
             ->brandName('Sayf El Falah')
             ->favicon(asset('images/logo.png'))
             ->colors([
