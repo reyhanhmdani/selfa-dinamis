@@ -116,7 +116,8 @@ class NewsResource extends Resource
             ->columns([
                 Tables\Columns\ImageColumn::make('image')
                     ->label('Gambar')
-                    ->circular(),
+                    ->disk('public')
+                    ->square(),
 
                 Tables\Columns\TextColumn::make('title')
                     ->label('Judul')
