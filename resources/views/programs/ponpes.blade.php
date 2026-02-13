@@ -185,7 +185,9 @@
           </div>
         </div>
       </div>
-    </div>  <!-- ============ SCHOOL NEWS SLIDER ============ -->
+    </div>  
+  </section>
+  <!-- ============ SCHOOL NEWS SLIDER ============ -->
   <x-news-slider />
 
   <!-- ============ STATISTICS ============ -->

@@ -25,8 +25,8 @@
         <div class="loader-center">
             <div class="loader-ring">
                 <svg viewBox="0 0 100 100">
-                    <circle class="loader-ring-bg" cx="50" cy="50" r="42" />
-                    <circle class="loader-ring-progress" cx="50" cy="50" r="42" />
+                    <circle class="loader-ring-bg" cx="50" cy="50" r="42" fill="none" stroke-width="3" />
+                    <circle class="loader-ring-progress" cx="50" cy="50" r="42" fill="none" stroke-width="3" />
                 </svg>
                 <div class="loader-icon">
                     <img src="{{ asset('image/icon-sd-selfa.png') }}" alt="Logo" />

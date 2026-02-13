@@ -210,7 +210,7 @@ ul, ol {
 }
 .loader-ring-progress {
   fill: none;
-  stroke: url(#loader-gradient);
+
   stroke: var(--primary);
   stroke-width: 3;
   stroke-linecap: round;
