@@ -137,7 +137,7 @@
 
       <div class="programs-grid stagger-container">
         <!-- KB & TK -->
-        <a href="{{ url('/programs/kbtk') }}" class="program-card stagger-item">
+        <a href="{{ route('program.kbtk') }}" class="program-card stagger-item">
           <div class="program-card-bg"></div>
           <div class="program-card-content">
             <div class="program-icon">
@@ -155,7 +155,7 @@
         </a>
 
         <!-- SD Alam -->
-        <a href="{{ url('/programs/sd') }}" class="program-card stagger-item">
+        <a href="{{ route('program.sd') }}" class="program-card stagger-item">
           <div class="program-card-bg"></div>
           <div class="program-card-content">
             <div class="program-icon">
@@ -173,7 +173,7 @@
         </a>
 
         <!-- Ponpes -->
-        <a href="{{ url('/programs/ponpes') }}" class="program-card stagger-item">
+        <a href="{{ route('program.ponpes') }}" class="program-card stagger-item">
           <div class="program-card-bg"></div>
           <div class="program-card-content">
             <div class="program-icon">
