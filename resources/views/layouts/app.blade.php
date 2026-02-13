@@ -18,10 +18,29 @@
 <body class="font-body text-gray-700 bg-white">
 
     <!-- Page Loader -->
-    <div class="page-loader">
-        <div class="loader-logo">Sayf El Falah</div>
-        <div class="loader-bar"><div class="loader-bar-inner"></div></div>
+    <div class="page-loader" id="page-loader">
+        <div class="loader-particles">
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="loader-center">
+            <div class="loader-ring">
+                <svg viewBox="0 0 100 100">
+                    <circle class="loader-ring-bg" cx="50" cy="50" r="42" />
+                    <circle class="loader-ring-progress" cx="50" cy="50" r="42" />
+                </svg>
+                <div class="loader-icon">
+                    <img src="{{ asset('image/icon-sd-selfa.png') }}" alt="Logo" />
+                </div>
+            </div>
+            <div class="loader-text">
+                <span class="loader-letter" style="--i:0">S</span><span class="loader-letter" style="--i:1">a</span><span class="loader-letter" style="--i:2">y</span><span class="loader-letter" style="--i:3">f</span><span class="loader-letter loader-space" style="--i:4">&nbsp;</span><span class="loader-letter" style="--i:5">E</span><span class="loader-letter" style="--i:6">l</span><span class="loader-letter loader-space" style="--i:7">&nbsp;</span><span class="loader-letter" style="--i:8">F</span><span class="loader-letter" style="--i:9">a</span><span class="loader-letter" style="--i:10">l</span><span class="loader-letter" style="--i:11">a</span><span class="loader-letter" style="--i:12">h</span>
+            </div>
+            <p class="loader-tagline">Membentuk Generasi Unggul</p>
+        </div>
     </div>
+
+    <!-- Quick Page Transition -->
+    <div class="page-transition" id="page-transition"></div>
 
     <!-- Scroll Progress -->
     <div class="scroll-progress"></div>

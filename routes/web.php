@@ -1,19 +1,13 @@
 <?php
 
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', [PageController::class, 'home'])->name('home');
 
-Route::get('/kbtk', function () {
-    return view('programs.kbtk');
-})->name('program.kbtk');
+Route::get('/kbtk', [PageController::class, 'kbtk'])->name('program.kbtk');
+Route::get('/sd', [PageController::class, 'sd'])->name('program.sd');
+Route::get('/ponpes', [PageController::class, 'ponpes'])->name('program.ponpes');
 
-Route::get('/sd', function () {
-    return view('programs.sd');
-})->name('program.sd');
-
-Route::get('/ponpes', function () {
-    return view('programs.ponpes');
-})->name('program.ponpes');
+Route::get('/berita', [PageController::class, 'berita'])->name('berita.index');
+Route::get('/berita/{slug}', [PageController::class, 'beritaShow'])->name('berita.show');

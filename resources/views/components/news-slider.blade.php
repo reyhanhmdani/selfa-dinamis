@@ -1,3 +1,7 @@
+@php
+  $news = $news ?? \App\Models\News::published()->latest('published_at')->take(5)->get();
+@endphp
+
   <!-- ============ SCHOOL NEWS SLIDER ============ -->
   <section class="news-section" id="news">
     <div class="container">
@@ -7,89 +11,31 @@
         <div class="section-line"></div>
       </div>
 
+      @if($news->isNotEmpty())
       <div class="news-slider-container reveal-scale">
         <div class="news-track">
-          <!-- News Item 1 -->
+          @foreach($news as $item)
           <div class="news-card">
             <div class="news-image-wrapper">
-              <img src="{{ asset('image/P1410680.JPG') }}" alt="News 1" class="news-image" loading="lazy">
-              <span class="news-date-badge">10 Feb 2026</span>
+              <img src="{{ $item->image ? asset('storage/' . $item->image) : asset('image/placeholder.jpg') }}" alt="{{ $item->title }}" class="news-image" loading="lazy">
+              <span class="news-date-badge">{{ $item->published_at->format('d M Y') }}</span>
             </div>
             <div class="news-content">
-              <h3 class="news-title">Kunjungan Edukatif ke Kebun Raya Bogor</h3>
-              <p class="news-excerpt">Siswa SD Alam Sayf El Falah belajar mengenal flora nusantara secara langsung...</p>
-              <a href="#" class="news-read-more">
+              <h3 class="news-title">{{ $item->title }}</h3>
+              <p class="news-excerpt">{{ Str::limit(strip_tags($item->content), 100) }}</p>
+              <a href="{{ route('berita.show', $item->slug) }}" class="news-read-more">
                 Baca Selengkapnya 
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
               </a>
             </div>
           </div>
-
-          <!-- News Item 2 -->
-          <div class="news-card">
-            <div class="news-image-wrapper">
-              <img src="{{ asset('image/selfa2.jpg') }}" alt="News 2" class="news-image" loading="lazy">
-              <span class="news-date-badge">05 Feb 2026</span>
-            </div>
-            <div class="news-content">
-              <h3 class="news-title">Market Day: Melatih Jiwa Entrepreneur</h3>
-              <p class="news-excerpt">Kegiatan jual beli antar siswa yang mengajarkan nilai ekonomi syariah...</p>
-              <a href="#" class="news-read-more">
-                Baca Selengkapnya
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-              </a>
-            </div>
-          </div>
-
-          <!-- News Item 3 -->
-          <div class="news-card">
-            <div class="news-image-wrapper">
-              <img src="{{ asset('image/gedungSd.jpg') }}" alt="News 3" class="news-image" loading="lazy">
-              <span class="news-date-badge">01 Feb 2026</span>
-            </div>
-            <div class="news-content">
-              <h3 class="news-title">Penerimaan Siswa Baru Gelombang 1</h3>
-              <p class="news-excerpt">Segera daftarkan putra-putri Ayah Bunda sebelum kuota terpenuhi...</p>
-              <a href="#" class="news-read-more">
-                Baca Selengkapnya
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-              </a>
-            </div>
-          </div>
-
-          <!-- News Item 4 -->
-          <div class="news-card">
-            <div class="news-image-wrapper">
-              <img src="{{ asset('image/Kurikulum-sd.svg') }}" alt="News 4" class="news-image" style="object-fit:contain; background:#f8fafc" loading="lazy">
-              <span class="news-date-badge">28 Jan 2026</span>
-            </div>
-            <div class="news-content">
-              <h3 class="news-title">Sosialisasi Kurikulum Baru 2026</h3>
-              <p class="news-excerpt">Pemaparan integrasi kurikulum nasional dan nilai keislaman untuk wali murid...</p>
-              <a href="#" class="news-read-more">
-                Baca Selengkapnya
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-              </a>
-            </div>
-          </div>
-
-          <!-- News Item 5 -->
-           <div class="news-card">
-            <div class="news-image-wrapper">
-              <img src="{{ asset('image/icon-sd-selfa.png') }}" alt="News 5" class="news-image" style="object-fit:contain; padding:2rem; background:#f0fdf4" loading="lazy">
-              <span class="news-date-badge">20 Jan 2026</span>
-            </div>
-            <div class="news-content">
-              <h3 class="news-title">Prestasi Siswa: Juara 1 Tahfidz</h3>
-              <p class="news-excerpt">Selamat kepada Ananda Fulan atas pencapaian luar biasa di tingkat kecamatan...</p>
-              <a href="#" class="news-read-more">
-                Baca Selengkapnya
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-              </a>
-            </div>
-          </div>
-
+          @endforeach
         </div>
       </div>
+      @else
+      <div class="news-empty-state reveal" style="text-align:center;padding:3rem 1rem;">
+        <p style="color:var(--gray-400);font-size:0.95rem;">Belum ada berita terbaru.</p>
+      </div>
+      @endif
     </div>
   </section>

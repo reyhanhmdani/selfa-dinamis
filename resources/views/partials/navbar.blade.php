@@ -16,6 +16,7 @@
           <a href="{{ route('program.ponpes') }}">Pondok Pesantren</a>
         </div>
       </div>
+      <a href="{{ route('berita.index') }}" class="nav-link">Berita</a>
     </div>
 
     <button class="mobile-menu-btn" id="mobile-menu-btn">
@@ -35,5 +36,6 @@
       <a href="{{ route('program.sd') }}">SD Alam Selfa</a>
       <a href="{{ route('program.ponpes') }}">Pondok Pesantren</a>
     </div>
+    <a href="{{ route('berita.index') }}">Berita</a>
   </div>
 </nav>

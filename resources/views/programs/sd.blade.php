@@ -554,38 +554,16 @@
       </div>
 
       <div class="gallery-grid stagger-container">
+        @forelse($galleries as $gallery)
         <div class="gallery-item stagger-item">
-          <img src="{{ asset('image/sd/1.jpg') }}" alt="Kegiatan SD" loading="lazy" />
+          <img src="{{ asset('storage/' . $gallery->image_path) }}" alt="{{ $gallery->title }}" loading="lazy" />
           <div class="gallery-zoom-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg></div>
         </div>
-        <div class="gallery-item stagger-item">
-          <img src="{{ asset('image/sd/2.jpg') }}" alt="Kegiatan SD" loading="lazy" />
-          <div class="gallery-zoom-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg></div>
+        @empty
+        <div class="col-span-full text-center py-5">
+            <p class="text-gray-500">Belum ada foto galeri.</p>
         </div>
-        <div class="gallery-item stagger-item">
-          <img src="{{ asset('image/sd/3.jpg') }}" alt="Kegiatan SD" loading="lazy" />
-          <div class="gallery-zoom-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg></div>
-        </div>
-        <div class="gallery-item stagger-item">
-          <img src="{{ asset('image/sd/4.jpg') }}" alt="Kegiatan SD" loading="lazy" />
-          <div class="gallery-zoom-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg></div>
-        </div>
-        <div class="gallery-item stagger-item">
-          <img src="{{ asset('image/sd/5.jpg') }}" alt="Kegiatan SD" loading="lazy" />
-          <div class="gallery-zoom-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg></div>
-        </div>
-        <div class="gallery-item stagger-item">
-          <img src="{{ asset('image/sd/8.jpg') }}" alt="Kegiatan SD" loading="lazy" />
-          <div class="gallery-zoom-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg></div>
-        </div>
-        <div class="gallery-item stagger-item">
-          <img src="{{ asset('image/sd/9.jpg') }}" alt="Kegiatan SD" loading="lazy" />
-          <div class="gallery-zoom-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg></div>
-        </div>
-        <div class="gallery-item stagger-item">
-          <img src="{{ asset('image/sd/10.jpg') }}" alt="Kegiatan SD" loading="lazy" />
-          <div class="gallery-zoom-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg></div>
-        </div>
+        @endforelse
       </div>
     </div>
 

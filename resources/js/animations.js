@@ -39,17 +39,79 @@ function initMobileAutoHover() {
 }
 
 function initPageLoader() {
-    const loader = document.querySelector('.page-loader');
-    if (loader) {
+    const loader = document.getElementById('page-loader');
+    if (!loader) return;
+
+    const hasVisited = sessionStorage.getItem('selfa_visited');
+
+    if (!hasVisited) {
+        // Kunjungan pertama — tampilkan full loader
+        const MIN_DISPLAY = 2200;
+        const startTime = Date.now();
+
         window.addEventListener('load', () => {
+            const elapsed = Date.now() - startTime;
+            const remaining = Math.max(0, MIN_DISPLAY - elapsed);
+
             setTimeout(() => {
                 loader.classList.add('loaded');
-                setTimeout(() => {
-                    loader.style.display = 'none';
-                }, 500);
-            }, 500);
+                sessionStorage.setItem('selfa_visited', '1');
+                setTimeout(() => { loader.style.display = 'none'; }, 800);
+            }, remaining);
         });
+    } else {
+        // Sudah pernah berkunjung — skip loader
+        loader.style.display = 'none';
     }
+
+    // Quick page transition untuk semua navigasi internal
+    initPageTransition();
+}
+
+function initPageTransition() {
+    const transition = document.getElementById('page-transition');
+    if (!transition) return;
+
+    document.addEventListener('click', (e) => {
+        const link = e.target.closest('a[href]');
+        if (!link) return;
+
+        const href = link.getAttribute('href');
+
+        // Skip: external links, hash links, new tab, mailto, tel, javascript
+        if (!href ||
+            href.startsWith('#') ||
+            href.startsWith('mailto:') ||
+            href.startsWith('tel:') ||
+            href.startsWith('javascript:') ||
+            link.target === '_blank' ||
+            link.hasAttribute('download') ||
+            e.ctrlKey || e.metaKey || e.shiftKey
+        ) return;
+
+        // Skip: external URLs
+        try {
+            const url = new URL(href, window.location.origin);
+            if (url.origin !== window.location.origin) return;
+            if (url.pathname === window.location.pathname && url.hash) return;
+        } catch (_e) {
+            return;
+        }
+
+        e.preventDefault();
+        transition.classList.add('active');
+
+        setTimeout(() => {
+            window.location.href = href;
+        }, 300);
+    });
+
+    // Saat kembali ke halaman (back/forward button)
+    window.addEventListener('pageshow', (e) => {
+        if (e.persisted) {
+            transition.classList.remove('active');
+        }
+    });
 }
 
 function initScrollAnimations() {
@@ -71,7 +133,7 @@ function initScrollAnimations() {
 
     // Elements to animate
     const animatedElements = document.querySelectorAll(
-        '.reveal, .reveal-left, .reveal-right, .reveal-scale'
+        '.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-rotate, .reveal-blur, .reveal-bounce'
     );
     
     animatedElements.forEach((el) => observer.observe(el));

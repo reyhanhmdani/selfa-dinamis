@@ -12,6 +12,12 @@ export function initNewsSlider() {
     const cards = Array.from(track.children);
     if (cards.length === 0) return;
 
+    // Modifikasi: Tidak perlu slider kalau item sedikit (< 4)
+    if (cards.length < 4) {
+        track.classList.add('no-slider');
+        return;
+    }
+
     // Clone items for infinite loop illusion
     // We clone enough items to fill the screen width twice
     const cardWidth = cards[0].offsetWidth + 32; // Width + Gap (2rem)

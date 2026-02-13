@@ -226,38 +226,16 @@
       </div>
 
       <div class="gallery-grid stagger-container">
+        @forelse($galleries as $gallery)
         <div class="gallery-item stagger-item">
-          <img src="{{ asset('image/belajarikhwan1.jpg') }}" alt="Kegiatan Belajar" loading="lazy" />
+          <img src="{{ asset('storage/' . $gallery->image_path) }}" alt="{{ $gallery->title }}" loading="lazy" />
           <div class="gallery-zoom-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg></div>
         </div>
-        <div class="gallery-item stagger-item">
-          <img src="{{ asset('image/belajarakhwat1.jpg') }}" alt="Kegiatan Belajar" loading="lazy" />
-          <div class="gallery-zoom-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg></div>
+        @empty
+         <div class="col-span-full text-center py-5">
+            <p class="text-gray-500">Belum ada foto galeri.</p>
         </div>
-        <div class="gallery-item stagger-item">
-          <img src="{{ asset('image/ponpes/01JWWX2XGN1TXZ0F5SSQFAAS1S.jpg') }}" alt="Kegiatan Ponpes" loading="lazy" />
-          <div class="gallery-zoom-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg></div>
-        </div>
-        <div class="gallery-item stagger-item">
-          <img src="{{ asset('image/ponpes/01JWWX3MRAJGRTSGPDKH3VR5Y8.jpg') }}" alt="Kegiatan Ponpes" loading="lazy" />
-          <div class="gallery-zoom-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg></div>
-        </div>
-        <div class="gallery-item stagger-item">
-          <img src="{{ asset('image/ponpes/01JWWX434GZMKGWTAWEQEZ27JK.jpg') }}" alt="Kegiatan Ponpes" loading="lazy" />
-          <div class="gallery-zoom-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg></div>
-        </div>
-        <div class="gallery-item stagger-item">
-          <img src="{{ asset('image/ponpes/01JWWX4SW6V32R4P3JEGV1CTMB.jpg') }}" alt="Kegiatan Ponpes" loading="lazy" />
-          <div class="gallery-zoom-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg></div>
-        </div>
-        <div class="gallery-item stagger-item">
-          <img src="{{ asset('image/gambar_bersama.jpg') }}" alt="Foto Bersama" loading="lazy" />
-          <div class="gallery-zoom-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg></div>
-        </div>
-        <div class="gallery-item stagger-item">
-          <img src="{{ asset('image/hadrahikhwan1.jpg') }}" alt="Hadrah" loading="lazy" />
-          <div class="gallery-zoom-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg></div>
-        </div>
+        @endforelse
       </div>
     </div>
   </section>

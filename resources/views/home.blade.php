@@ -92,7 +92,7 @@
   <section class="section-padding" id="about">
     <div class="container">
       <div class="about-grid">
-        <div class="about-image reveal-scale">
+        <div class="about-image reveal-blur">
           <img src="{{ asset('image/masjidselfa1.jpg') }}" alt="Masjid Sayf El Falah" />
         </div>
         <div class="about-content reveal-right">
@@ -128,7 +128,7 @@
   <!-- ============ PROGRAMS ============ -->
   <section class="section-padding bg-gradient-subtle" id="programs">
     <div class="container">
-      <div class="section-header reveal">
+      <div class="section-header reveal-bounce">
         <span class="section-badge">Program Pendidikan</span>
         <h2 class="section-title">Jenjang Pendidikan Kami</h2>
         <div class="section-line"></div>
@@ -193,7 +193,7 @@
     </div>
   </section>
   <!-- ============ SCHOOL NEWS SLIDER ============ -->
-  <x-news-slider />
+  <x-news-slider :news="$news" />
 
   <!-- ============ STATISTICS ============ -->
   <section class="stats-section section-padding">
@@ -227,7 +227,7 @@
   <!-- ============ GALLERY ============ -->
   <section class="section-padding" id="gallery">
     <div class="container">
-      <div class="section-header reveal">
+      <div class="section-header reveal-bounce">
         <span class="section-badge">Galeri</span>
         <h2 class="section-title">Momen & Kegiatan</h2>
         <div class="section-line"></div>
@@ -302,13 +302,13 @@
   <!-- ============ CONTACT ============ -->
   <section class="section-padding bg-gradient-subtle" id="contact">
     <div class="container">
-      <div class="section-header reveal">
+      <div class="section-header reveal-bounce">
         <span class="section-badge">Kontak</span>
         <h2 class="section-title">Hubungi Kami</h2>
         <div class="section-line"></div>
       </div>
 
-      <div class="contact-grid reveal">
+      <div class="contact-grid reveal-blur">
         <div class="contact-info">
           <h3>Informasi Kontak</h3>
           
