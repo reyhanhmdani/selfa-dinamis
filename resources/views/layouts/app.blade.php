@@ -12,10 +12,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
+    <!-- Three.js CDN -->
+    <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+
     <!-- CSS / Vite -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="font-body text-gray-700 bg-white">
+<body class="font-body text-gray-700">
+
+    <!-- Background 3D Canvas -->
+    <canvas id="bg-3d-canvas" class="fixed top-0 left-0 w-full h-full z-0 pointer-events-none opacity-60"></canvas>
 
     <!-- Page Loader -->
     <div class="page-loader" id="page-loader">
@@ -47,14 +53,17 @@
 
 
 
-    <!-- Navbar -->
-    @include('partials.navbar')
+    <!-- Main Content Wrapper -->
+    <div class="relative z-10">
+        <!-- Navbar -->
+        @include('partials.navbar')
 
-    <!-- Content -->
-    @yield('content')
+        <!-- Content -->
+        @yield('content')
 
-    <!-- Footer -->
-    @include('partials.footer')
+        <!-- Footer -->
+        @include('partials.footer')
+    </div>
 
     <!-- Lightbox -->
     <div class="lightbox" id="lightbox">

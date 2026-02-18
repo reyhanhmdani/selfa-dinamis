@@ -78,7 +78,7 @@ html {
 body {
   font-family: var(--font-body);
   color: var(--gray-700);
-  background: var(--white);
+  background: transparent;
   line-height: 1.7;
   overflow-x: hidden;
 }
@@ -657,6 +657,72 @@ ul, ol {
 
 .hero-cta:hover svg {
   transform: translateX(4px);
+}
+
+/* Hero USP Cards (Hook) */
+.hero-usp-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem auto;
+  max-width: 900px;
+  animation: fadeUp 0.8s 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-usp-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
+}
+
+.hero-usp-card:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.usp-icon {
+  font-size: 1rem;
+}
+
+.usp-text {
+  color: var(--white);
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile Responsive USP */
+@media (max-width: 768px) {
+  .hero-usp-grid {
+    gap: 0.5rem;
+    margin: 1.5rem auto;
+  }
+  
+  .hero-usp-card {
+    padding: 0.5rem 1rem;
+  }
+  
+  .usp-text {
+    font-size: 0.8rem;
+  }
+  
+  .usp-icon {
+    font-size: 0.9rem;
+  }
 }
 
 /* Scroll indicator */
@@ -1672,7 +1738,7 @@ ul, ol {
 
 /* ---------- Helpers ---------- */
 .bg-gradient-subtle {
-  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+  background: linear-gradient(180deg, rgba(248, 250, 252, 0.4) 0%, rgba(255, 255, 255, 0.4) 100%);
 }
 
 .container.relative {

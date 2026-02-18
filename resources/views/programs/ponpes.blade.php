@@ -12,10 +12,27 @@
     <div class="hero-particles"></div>
 
     <div class="hero-content">
-      <div class="hero-subtitle">Selamat Datang di Ponpes</div>
-      <h1 class="hero-title">Sayf El Falah</h1>
-      <p class="hero-desc">Pondok Pesantren Sayf El Falah adalah lembaga pendidikan Islam yang berkomitmen mencetak generasi beriman, bertakwa, dan berakhlak mulia.</p>
-      <a href="#programs" class="hero-cta">
+      <div class="hero-subtitle">Leader & Hafiz</div>
+      <h1 class="hero-title">Ponpes Selfa</h1>
+      <p class="hero-desc">Menyiapkan pemuda tangguh yang tidak hanya hafal Al-Qur'an, tapi juga siap memimpin peradaban dengan bekal ilmu syar'i dan kompetensi global.</p>
+
+      <!-- USP Cards (Hook) -->
+      <div class="hero-usp-grid">
+        <div class="hero-usp-card">
+          <span class="usp-icon">📜</span>
+          <span class="usp-text">Sanad Al-Qur'an</span>
+        </div>
+        <div class="hero-usp-card">
+          <span class="usp-icon">🚀</span>
+          <span class="usp-text">Entrepreneurship</span>
+        </div>
+        <div class="hero-usp-card">
+          <span class="usp-icon">🌍</span>
+          <span class="usp-text">Bahasa & Teknologi</span>
+        </div>
+      </div>
+
+      <a href="#programs" class="hero-cta mt-8">
         Lihat Program
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
       </a>

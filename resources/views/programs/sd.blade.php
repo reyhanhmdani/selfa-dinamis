@@ -12,10 +12,27 @@
     <div class="hero-particles"></div>
 
     <div class="hero-content">
-      <div class="hero-subtitle">Selamat Datang di SD Alam</div>
-      <h1 class="hero-title">Sayf El Falah</h1>
-      <p class="hero-desc">Membentuk generasi cerdas, kreatif, dan berakhlak mulia melalui pendidikan usia dini yang menyenangkan.</p>
-      <a href="#programs" class="hero-cta">
+      <div class="hero-subtitle">Adab & Critical Thinking</div>
+      <h1 class="hero-title">SD Alam Selfa</h1>
+      <p class="hero-desc">Sekolah bukan sekadar kelas. Alam adalah laboratorium terbaik untuk mengasah logika, kepemimpinan, dan kekaguman pada kebesaran Allah.</p>
+
+      <!-- USP Cards (Hook) -->
+      <div class="hero-usp-grid">
+        <div class="hero-usp-card">
+          <span class="usp-icon">🌿</span>
+          <span class="usp-text">Laboratorium Alam</span>
+        </div>
+        <div class="hero-usp-card">
+          <span class="usp-icon">🕌</span>
+          <span class="usp-text">Adab Sebelum Ilmu</span>
+        </div>
+        <div class="hero-usp-card">
+          <span class="usp-icon">💡</span>
+          <span class="usp-text">Project-Based Learning</span>
+        </div>
+      </div>
+
+      <a href="#programs" class="hero-cta mt-8">
         Lihat Program
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
       </a>
