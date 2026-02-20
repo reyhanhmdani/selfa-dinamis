@@ -10,12 +10,10 @@ export function initBackground3D() {
 
     // --- Scene Setup ---
     const scene = new THREE.Scene();
-    
-    // Background color matching the body but slightly darker/bluer for depth
-    // Or transparent if we want the CSS background to show through
+    // Light fog for depth
     scene.fog = new THREE.FogExp2(0xffffff, 0.002);
 
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000);
     const renderer = new THREE.WebGLRenderer({
         canvas,
         alpha: true,
@@ -25,133 +23,111 @@ export function initBackground3D() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    // --- Knowledge Net (Constellation) Setup ---
-    const particlesCount = 150;
-    const positions = new Float32Array(particlesCount * 3);
-    const velocities = [];
+    // --- Emerald Flow (Particle Wave) ---
+    // Geometry: A plane buffer geometry of particles
+    const particleCountX = 100; // Density Width
+    const particleCountZ = 60;  // Density Depth
+    const particleCount = particleCountX * particleCountZ;
 
-    for (let i = 0; i < particlesCount; i++) {
-        // Spread particles in a large cube
-        positions[i * 3] = (Math.random() - 0.5) * 20;
-        positions[i * 3 + 1] = (Math.random() - 0.5) * 20;
-        positions[i * 3 + 2] = (Math.random() - 0.5) * 10;
+    const geometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(particleCount * 3);
+    const scales = new Float32Array(particleCount);
+    
+    // Initial Grid Layout
+    let i = 0, j = 0;
+    for (let ix = 0; ix < particleCountX; ix++) {
+        for (let iz = 0; iz < particleCountZ; iz++) {
+            const x = ix * 2 - particleCountX; // Centered
+            const z = iz * 2 - particleCountZ; // Centered
+            const y = 0;
 
-        velocities.push({
-            x: (Math.random() - 0.5) * 0.005,
-            y: (Math.random() - 0.5) * 0.005,
-            z: (Math.random() - 0.5) * 0.005
-        });
+            positions[i] = x;
+            positions[i + 1] = y;
+            positions[i + 2] = z;
+
+            scales[j] = 1;
+
+            i += 3;
+            j++;
+        }
     }
 
-    const particlesGeometry = new THREE.BufferGeometry();
-    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('scale', new THREE.BufferAttribute(scales, 1));
 
-    // Get primary color from CSS variable
+    // Material
     const style = getComputedStyle(document.documentElement);
     const emeraldColor = style.getPropertyValue('--color-primary').trim() || style.getPropertyValue('--primary').trim() || '#00ab66';
 
-    const particlesMaterial = new THREE.PointsMaterial({
+    const material = new THREE.PointsMaterial({
         color: new THREE.Color(emeraldColor),
-        size: 0.08,
+        size: 0.15,
         transparent: true,
         opacity: 0.8,
-        sizeAttenuation: true
     });
 
-    const particles = new THREE.Points(particlesGeometry, particlesMaterial);
+    const particles = new THREE.Points(geometry, material);
     scene.add(particles);
 
-    // --- Lines (Connections) ---
-    const linesMaterial = new THREE.LineBasicMaterial({
-        color: new THREE.Color(emeraldColor),
-        transparent: true,
-        opacity: 0.1
-    });
+    // Camera Position
+    camera.position.y = 15; // High up looking down
+    camera.position.z = 40;
+    camera.lookAt(new THREE.Vector3(0, 5, 0));
 
-    let linesMesh;
-
-    function updateLines() {
-        if (linesMesh) scene.remove(linesMesh);
-
-        const linePositions = [];
-        const posArray = particlesGeometry.attributes.position.array;
-
-        for (let i = 0; i < particlesCount; i++) {
-            for (let j = i + 1; j < particlesCount; j++) {
-                const dx = posArray[i * 3] - posArray[j * 3];
-                const dy = posArray[i * 3 + 1] - posArray[j * 3 + 1];
-                const dz = posArray[i * 3 + 2] - posArray[j * 3 + 2];
-                const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
-
-                // Create connection if close enough
-                if (dist < 2.5) {
-                    linePositions.push(posArray[i * 3], posArray[i * 3 + 1], posArray[i * 3 + 2]);
-                    linePositions.push(posArray[j * 3], posArray[j * 3 + 1], posArray[j * 3 + 2]);
-                }
-            }
-        }
-
-        const linesGeometry = new THREE.BufferGeometry();
-        linesGeometry.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
-        linesMesh = new THREE.LineSegments(linesGeometry, linesMaterial);
-        scene.add(linesMesh);
-    }
-
-    camera.position.z = 8;
-
-    // --- Interaction State ---
+    // --- Interaction ---
     let mouseX = 0;
     let mouseY = 0;
-    let targetX = 0;
-    let targetY = 0;
-    let scrollY = window.scrollY;
 
-    // Only on desktop
     if (window.matchMedia("(min-width: 768px)").matches) {
         window.addEventListener('mousemove', (e) => {
-            mouseX = (e.clientX / window.innerWidth) - 0.5;
-            mouseY = (e.clientY / window.innerHeight) - 0.5;
+            mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+            mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
         });
     }
 
-    window.addEventListener('scroll', () => {
-        scrollY = window.scrollY;
-    });
-
-    // --- Animation Loop ---
-    const clock = new THREE.Clock();
+    // --- Animation ---
+    let countAnimation = 0;
 
     function animate() {
         requestAnimationFrame(animate);
-        const delta = clock.getDelta();
 
-        // Update positions based on velocities
-        const posArray = particlesGeometry.attributes.position.array;
-        for (let i = 0; i < particlesCount; i++) {
-            posArray[i * 3] += velocities[i].x;
-            posArray[i * 3 + 1] += velocities[i].y;
-            posArray[i * 3 + 2] += velocities[i].z;
+        const positions = particles.geometry.attributes.position.array;
+        
+        // Wave Animation
+        let i = 0;
+        let ix = 0;
+        let iz = 0;
 
-            // Boundary check (keep in cube)
-            if (Math.abs(posArray[i * 3]) > 10) velocities[i].x *= -1;
-            if (Math.abs(posArray[i * 3 + 1]) > 10) velocities[i].y *= -1;
-            if (Math.abs(posArray[i * 3 + 2]) > 10) velocities[i].z *= -1;
+        for (let ix = 0; ix < particleCountX; ix++) {
+            for (let iz = 0; iz < particleCountZ; iz++) {
+                
+                // Classic Sine Wave Formula
+                // y = sin(x + time) + cos(z + time)
+                const x = positions[i];
+                const z = positions[i + 2];
+                
+                // Add mouse influence
+                const distToMouse = Math.sqrt(Math.pow(x - mouseX * 50, 2) + Math.pow(z - mouseY * 20, 2));
+                let mouseRipple = 0;
+                if(distToMouse < 15) {
+                    mouseRipple = (15 - distToMouse) * 0.5;
+                }
+
+                // Complex wave motion
+                positions[i + 1] = (Math.sin((ix + countAnimation) * 0.3) * 2) + 
+                                   (Math.sin((iz + countAnimation) * 0.5) * 2) + 
+                                   mouseRipple; 
+
+                i += 3;
+            }
         }
-        particlesGeometry.attributes.position.needsUpdate = true;
 
-        // Dynamic connections
-        updateLines();
+        particles.geometry.attributes.position.needsUpdate = true;
+        countAnimation += 0.05; // Speed
 
-        // Smooth camera movement (Parallax + Mouse)
-        targetX = mouseX * 3;
-        targetY = (mouseY * 3);
-        
-        // Parallax scroll effect
-        const targetScrollY = scrollY * 0.005;
-        
-        camera.position.x += (targetX - camera.position.x) * 0.02;
-        camera.position.y += (-targetY - targetScrollY - camera.position.y) * 0.02;
-        
+        // Gentle Camera Float
+        camera.position.x += (mouseX * 5 - camera.position.x) * 0.05;
+        camera.position.y += (-mouseY * 2 + 15 - camera.position.y) * 0.05;
         camera.lookAt(scene.position);
 
         renderer.render(scene, camera);
@@ -159,7 +135,7 @@ export function initBackground3D() {
 
     animate();
 
-    // --- Resize Handler ---
+    // --- Resize ---
     window.addEventListener('resize', () => {
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
