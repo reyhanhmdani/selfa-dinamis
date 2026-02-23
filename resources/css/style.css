@@ -114,6 +114,13 @@ button {
   font-family: inherit;
 }
 
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
 ul, ol {
   list-style: none;
 }

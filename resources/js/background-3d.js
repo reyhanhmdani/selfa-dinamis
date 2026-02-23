@@ -1,16 +1,34 @@
+let threeLoadPromise;
 
-export function initBackground3D() {
+function loadThreeFromCdn() {
+    if (window.THREE) return Promise.resolve(window.THREE);
+    if (threeLoadPromise) return threeLoadPromise;
+
+    threeLoadPromise = new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = 'https://unpkg.com/three@0.160.0/build/three.min.js';
+        script.async = true;
+        script.onload = () => resolve(window.THREE);
+        script.onerror = () => reject(new Error('Failed to load Three.js'));
+        document.head.appendChild(script);
+    });
+
+    return threeLoadPromise;
+}
+
+export async function initBackground3D() {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
     if (prefersReducedMotion || !isDesktop) return;
 
-    const THREE = window.THREE;
+    const canvas = document.querySelector('#bg-3d-canvas');
+    if (!canvas) return;
+
+    const THREE = await loadThreeFromCdn();
     if (!THREE) {
         console.error('Three.js not loaded');
         return;
     }
-    const canvas = document.querySelector('#bg-3d-canvas');
-    if (!canvas) return;
 
     // --- Scene Setup ---
     const scene = new THREE.Scene();

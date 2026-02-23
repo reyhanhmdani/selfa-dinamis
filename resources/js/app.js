@@ -5,6 +5,30 @@ import { initNavbarInteractions } from './navbar';
 import { initNewsSlider } from './news-slider';
 import { initBackground3D } from './background-3d';
 
+function initScrollProgress() {
+    const progressEl = document.querySelector('.scroll-progress');
+    if (!progressEl) return;
+
+    const update = () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const percentage = docHeight > 0 ? Math.min((scrollTop / docHeight) * 100, 100) : 0;
+        progressEl.style.width = `${percentage}%`;
+    };
+
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+            update();
+            ticking = false;
+        });
+    }, { passive: true });
+
+    update();
+}
+
 function normalizeScrollOnReload() {
     if ('scrollRestoration' in history) {
         history.scrollRestoration = 'manual';
@@ -25,6 +49,7 @@ initPageLoaderExport();
 initNavbarInteractions();
 initGallery();
 initNewsSlider();
+initScrollProgress();
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
