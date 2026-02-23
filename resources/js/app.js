@@ -5,7 +5,20 @@ import { initNavbarInteractions } from './navbar';
 import { initNewsSlider } from './news-slider';
 import { initBackground3D } from './background-3d';
 
-// Page Loader — ALWAYS runs (no motion preference guard)
+function normalizeScrollOnReload() {
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+
+    const resetToTop = () => window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    resetToTop();
+    window.addEventListener('load', resetToTop);
+    window.addEventListener('pageshow', resetToTop);
+}
+
+normalizeScrollOnReload();
+
+// Page Loader - ALWAYS runs (no motion preference guard)
 initPageLoaderExport();
 
 // Initialize non-animation features
