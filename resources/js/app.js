@@ -1,13 +1,25 @@
 import './bootstrap';
-import { initAllAnimations } from './animations';
+import { initAllAnimations, initPageLoaderExport } from './animations';
 import { initGallery } from './gallery';
 import { initNavbarInteractions } from './navbar';
 import { initNewsSlider } from './news-slider';
 import { initBackground3D } from './background-3d';
 
-// Initialize everything
+// Page Loader — ALWAYS runs (no motion preference guard)
+initPageLoaderExport();
+
+// Initialize non-animation features
 initNavbarInteractions();
 initGallery();
-initAllAnimations();
 initNewsSlider();
-initBackground3D();
+
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
+
+if (!prefersReducedMotion) {
+    initAllAnimations();
+}
+
+if (!prefersReducedMotion && isDesktop) {
+    initBackground3D();
+}

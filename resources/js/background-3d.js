@@ -1,5 +1,9 @@
 
 export function initBackground3D() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
+    if (prefersReducedMotion || !isDesktop) return;
+
     const THREE = window.THREE;
     if (!THREE) {
         console.error('Three.js not loaded');

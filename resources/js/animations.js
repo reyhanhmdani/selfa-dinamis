@@ -5,13 +5,17 @@
 
 export function initAllAnimations() {
     document.body.classList.add('js-enabled'); // Enable animations only if JS loads
-    initPageLoader();
     initHeroAnimation();
     initScrollAnimations();
     initStatsCounter();
     initParallax();
     initMobileAutoHover();
     initCardTilt();
+}
+
+// Exported separately — must always run regardless of motion preference
+export function initPageLoaderExport() {
+    initPageLoader();
 }
 
 function initMobileAutoHover() {
@@ -40,28 +44,34 @@ function initMobileAutoHover() {
 
 function initPageLoader() {
     const loader = document.getElementById('page-loader');
+    const content = document.querySelector('.page-content');
     if (!loader) return;
 
-    const hasVisited = sessionStorage.getItem('selfa_visited');
+    // Selalu tampilkan loader + curtain reveal di setiap load
+    const MIN_DISPLAY = 2200;
+    const startTime = Date.now();
 
-    if (!hasVisited) {
-        // Kunjungan pertama — tampilkan full loader
-        const MIN_DISPLAY = 2200;
-        const startTime = Date.now();
+    function doReveal() {
+        const elapsed = Date.now() - startTime;
+        const remaining = Math.max(0, MIN_DISPLAY - elapsed);
 
-        window.addEventListener('load', () => {
-            const elapsed = Date.now() - startTime;
-            const remaining = Math.max(0, MIN_DISPLAY - elapsed);
+        setTimeout(() => {
+            // Phase 1: Curtain slides UP
+            loader.classList.add('loaded');
 
+            // Phase 2: Content reveals from below
             setTimeout(() => {
-                loader.classList.add('loaded');
-                sessionStorage.setItem('selfa_visited', '1');
-                setTimeout(() => { loader.style.display = 'none'; }, 800);
-            }, remaining);
-        });
+                if (content) content.classList.add('revealed');
+                loader.style.display = 'none';
+            }, 600);
+        }, remaining);
+    }
+
+    // Handle case where 'load' already fired (Vite deferred modules)
+    if (document.readyState === 'complete') {
+        doReveal();
     } else {
-        // Sudah pernah berkunjung — skip loader
-        loader.style.display = 'none';
+        window.addEventListener('load', doReveal);
     }
 
     // Quick page transition untuk semua navigasi internal

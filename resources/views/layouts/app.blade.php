@@ -54,7 +54,7 @@
 
 
     <!-- Main Content Wrapper -->
-    <div class="relative z-10">
+    <div class="page-content relative z-10">
         <!-- Navbar -->
         @include('partials.navbar')
 

@@ -288,19 +288,6 @@
     </div>
   </section>
 
-  <!-- ============ LIGHTBOX ============ -->
-  <div class="lightbox" id="lightbox">
-    <button class="lightbox-close">&times;</button>
-    <button class="lightbox-btn lightbox-prev">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
-    </button>
-    <img class="lightbox-image" src="" alt="Gallery Image" />
-    <button class="lightbox-btn lightbox-next">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
-    </button>
-    <div class="lightbox-thumbs"></div>
-  </div>
-
   <!-- ============ CONTACT ============ -->
   <section class="section-padding bg-gradient-subtle" id="contact">
     <div class="container">
@@ -332,7 +319,7 @@
             </div>
             <div>
               <h4>Telepon</h4>
-              <p>0811 2653 630 (WhatsApp)</p>
+              <p>0821-2207-3707 (WhatsApp)</p>
             </div>
           </div>
 
@@ -343,7 +330,7 @@
             </div>
             <div>
               <h4>Email</h4>
-              <p>Sayfelfalah@gmail.com</p>
+              <p>info@sayfelfalah.sch.id</p>
             </div>
           </div>
 
