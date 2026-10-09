@@ -1,6 +1,4 @@
-@php
-  $news = $news ?? \App\Models\News::published()->latest('published_at')->take(5)->get();
-@endphp
+@props(['news' => collect()])
 
   <!-- ============ SCHOOL NEWS SLIDER ============ -->
   <section class="news-section" id="news">
