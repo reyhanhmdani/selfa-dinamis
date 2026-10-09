@@ -83,6 +83,9 @@ function initPageTransition() {
     if (!transition) return;
 
     document.addEventListener('click', (e) => {
+        // Only trigger on primary left click
+        if (e.button !== 0) return;
+
         const link = e.target.closest('a[href]');
         if (!link) return;
 
@@ -110,6 +113,11 @@ function initPageTransition() {
 
         e.preventDefault();
         transition.classList.add('active');
+
+        // Fallback: reset overlay if navigation takes too long or fails
+        const safetyTimer = setTimeout(() => {
+            transition.classList.remove('active');
+        }, 4000);
 
         setTimeout(() => {
             window.location.href = href;

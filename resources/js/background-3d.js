@@ -24,9 +24,15 @@ export async function initBackground3D() {
     const canvas = document.querySelector('#bg-3d-canvas');
     if (!canvas) return;
 
-    const THREE = await loadThreeFromCdn();
+    let THREE;
+    try {
+        THREE = await loadThreeFromCdn();
+    } catch (err) {
+        console.warn('Three.js failed to load, disabling 3D background:', err);
+        return;
+    }
+
     if (!THREE) {
-        console.error('Three.js not loaded');
         return;
     }
 
@@ -56,21 +62,22 @@ export async function initBackground3D() {
     const scales = new Float32Array(particleCount);
     
     // Initial Grid Layout
-    let i = 0, j = 0;
+    let initPosIdx = 0;
+    let initScaleIdx = 0;
     for (let ix = 0; ix < particleCountX; ix++) {
         for (let iz = 0; iz < particleCountZ; iz++) {
             const x = ix * 2 - particleCountX; // Centered
             const z = iz * 2 - particleCountZ; // Centered
             const y = 0;
 
-            positions[i] = x;
-            positions[i + 1] = y;
-            positions[i + 2] = z;
+            positions[initPosIdx] = x;
+            positions[initPosIdx + 1] = y;
+            positions[initPosIdx + 2] = z;
 
-            scales[j] = 1;
+            scales[initScaleIdx] = 1;
 
-            i += 3;
-            j++;
+            initPosIdx += 3;
+            initScaleIdx++;
         }
     }
 
@@ -104,48 +111,47 @@ export async function initBackground3D() {
         window.addEventListener('mousemove', (e) => {
             mouseX = (e.clientX / window.innerWidth) * 2 - 1;
             mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
-        });
+        }, { passive: true });
     }
 
     // --- Animation ---
     let countAnimation = 0;
+    const INFLUENCE_RADIUS = 15;
+    const INFLUENCE_RADIUS_SQ = INFLUENCE_RADIUS * INFLUENCE_RADIUS; // 225
 
     function animate() {
         requestAnimationFrame(animate);
 
-        const positions = particles.geometry.attributes.position.array;
-        
-        // Wave Animation
-        let i = 0;
-        let ix = 0;
-        let iz = 0;
+        const posArray = particles.geometry.attributes.position.array;
+        const targetMouseX = mouseX * 50;
+        const targetMouseY = mouseY * 20;
 
+        let ptr = 0;
         for (let ix = 0; ix < particleCountX; ix++) {
+            // Compute X wave once per column instead of every inner iteration
+            const waveX = Math.sin((ix + countAnimation) * 0.3) * 2;
+
             for (let iz = 0; iz < particleCountZ; iz++) {
-                
-                // Classic Sine Wave Formula
-                // y = sin(x + time) + cos(z + time)
-                const x = positions[i];
-                const z = positions[i + 2];
-                
-                // Add mouse influence
-                const distToMouse = Math.sqrt(Math.pow(x - mouseX * 50, 2) + Math.pow(z - mouseY * 20, 2));
+                const x = posArray[ptr];
+                const z = posArray[ptr + 2];
+
+                // Fast distance check avoids expensive Math.sqrt for particles far from cursor
+                const dx = x - targetMouseX;
+                const dz = z - targetMouseY;
+                const distSq = dx * dx + dz * dz;
+
                 let mouseRipple = 0;
-                if(distToMouse < 15) {
-                    mouseRipple = (15 - distToMouse) * 0.5;
+                if (distSq < INFLUENCE_RADIUS_SQ) {
+                    mouseRipple = (INFLUENCE_RADIUS - Math.sqrt(distSq)) * 0.5;
                 }
 
-                // Complex wave motion
-                positions[i + 1] = (Math.sin((ix + countAnimation) * 0.3) * 2) + 
-                                   (Math.sin((iz + countAnimation) * 0.5) * 2) + 
-                                   mouseRipple; 
-
-                i += 3;
+                posArray[ptr + 1] = waveX + (Math.sin((iz + countAnimation) * 0.5) * 2) + mouseRipple;
+                ptr += 3;
             }
         }
 
         particles.geometry.attributes.position.needsUpdate = true;
-        countAnimation += 0.05; // Speed
+        countAnimation += 0.05;
 
         // Gentle Camera Float
         camera.position.x += (mouseX * 5 - camera.position.x) * 0.05;

@@ -19,9 +19,9 @@ export function initNewsSlider() {
     }
 
     // Clone items for infinite loop illusion
-    // We clone enough items to fill the screen width twice
+    // Bound clonesNeeded so it never exceeds available card count
     const cardWidth = cards[0].offsetWidth + 32; // Width + Gap (2rem)
-    const clonesNeeded = 5; // Simple heuristic for now
+    const clonesNeeded = Math.min(cards.length, 5);
 
     // Clone Start (Append to end)
     for (let i = 0; i < clonesNeeded; i++) {
@@ -89,8 +89,8 @@ export function initNewsSlider() {
         prevTranslate = position;
         setSliderPosition();
 
-        // Wait for transition to end to check loop
-        track.addEventListener('transitionend', checkIndex);
+        // Use once: true to prevent event listener accumulation
+        track.addEventListener('transitionend', checkIndex, { once: true });
     }
 
     function checkIndex() {
@@ -116,8 +116,6 @@ export function initNewsSlider() {
             prevTranslate = currentTranslate;
             setSliderPosition();
         }
-        
-        track.removeEventListener('transitionend', checkIndex);
     }
 
 

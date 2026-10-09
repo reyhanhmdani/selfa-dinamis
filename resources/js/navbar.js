@@ -93,16 +93,18 @@ export function initNavbarInteractions() {
         setHidden(mobileDropdownContent, true);
     });
 
-    // Navbar Scroll Effect
+    // Navbar Scroll Effect with RAF throttling
     const navbar = document.querySelector(".navbar");
     if (navbar) {
+        let ticking = false;
         window.addEventListener("scroll", () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add("scrolled");
-            } else {
-                navbar.classList.remove("scrolled");
-            }
-        });
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(() => {
+                navbar.classList.toggle("scrolled", window.scrollY > 50);
+                ticking = false;
+            });
+        }, { passive: true });
     }
 
 
