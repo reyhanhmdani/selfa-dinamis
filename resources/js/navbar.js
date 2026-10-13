@@ -58,6 +58,18 @@ export function initNavbarInteractions() {
         });
     }
 
+    // Close mobile menu when selecting any link
+    if (mobileMenu) {
+        mobileMenu.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", () => {
+                setExpanded(mobileBtn, false);
+                setHidden(mobileMenu, true);
+                setExpanded(mobileDropdownBtn, false);
+                setHidden(mobileDropdownContent, true);
+            });
+        });
+    }
+
     // Close menus on outside click
     document.addEventListener("click", (e) => {
         if (

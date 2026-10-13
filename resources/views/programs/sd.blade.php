@@ -322,7 +322,7 @@
   <x-news-slider :news="$news" />
 
   <!-- ============ SPMB & BIAYA PENDIDIKAN SD ============ -->
-  <section class="section-padding bg-gradient-subtle" id="pendaftaran">
+  <section class="section-padding bg-gradient-subtle" id="biaya">
     <div class="container">
       <div class="section-header reveal">
         <span class="section-badge">Informasi SPMB & Biaya</span>
