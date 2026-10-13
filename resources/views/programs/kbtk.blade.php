@@ -336,20 +336,20 @@
                 </span>
               </div>
 
-              <ul class="program-quick-checklist">
-                <li>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  <span>Kelompok Bermain (KB): Usia 3 – 4 Tahun</span>
-                </li>
-                <li>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  <span>Taman Kanak-kanak (TK): Usia 4 – 6 Tahun</span>
-                </li>
-                <li>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  <span>Tanpa tes calistung (fokus fitrah & motorik)</span>
-                </li>
-              </ul>
+              @if(!empty($admissionFee?->requirements) && count($admissionFee->requirements) > 0)
+                <ul class="program-quick-checklist">
+                  @foreach($admissionFee->requirements as $req)
+                    <li>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      <span>{{ $req }}</span>
+                    </li>
+                  @endforeach
+                </ul>
+              @elseif(!empty($admissionWave?->announcement))
+                <div class="program-spmb-side-announcement">
+                  <p>{{ $admissionWave->announcement }}</p>
+                </div>
+              @endif
             </div>
 
             <div class="program-spmb-actions">

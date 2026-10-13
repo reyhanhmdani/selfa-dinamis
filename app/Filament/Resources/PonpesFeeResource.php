@@ -127,6 +127,12 @@ class PonpesFeeResource extends Resource
                             ->placeholder('Contoh: Asrama Putra, Makan 3x Sehari, Kitab & Modul Gratis...')
                             ->columnSpanFull(),
 
+                        TagsInput::make('requirements')
+                            ->label('Syarat Kelulusan / Berkas Santri (Tekan Enter untuk menambah)')
+                            ->placeholder('Contoh: Lulusan SD/MI sederajat, Siap mukim di asrama, Lulus tes Al-Quran...')
+                            ->helperText('Akan tampil di kartu pendaftaran santri baru. Jika dikosongkan, kartu akan otomatis menyesuaikan diri dengan rapi.')
+                            ->columnSpanFull(),
+
                         TextInput::make('notes')
                             ->label('Catatan Pendaftaran & Kuota')
                             ->placeholder('Contoh: Kuota terbatas setiap angkatan melalui tahapan seleksi baca Al-Quran')

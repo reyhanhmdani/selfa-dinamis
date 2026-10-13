@@ -115,11 +115,17 @@ class SdFeeResource extends Resource
                     ])
                     ->columns(2),
 
-                Section::make('Fasilitas & Catatan')
+                Section::make('Fasilitas & Persyaratan')
                     ->schema([
                         TagsInput::make('features')
                             ->label('Fasilitas / Keunggulan (Tekan Enter untuk menambah)')
                             ->placeholder('Ketik fasilitas lalu Enter...')
+                            ->columnSpanFull(),
+
+                        TagsInput::make('requirements')
+                            ->label('Persyaratan / Berkas Santri Baru (Tekan Enter untuk menambah)')
+                            ->placeholder('Contoh: Usia min 6 tahun, Fotokopi Akta & KK...')
+                            ->helperText('Akan tampil di kartu pendaftaran santri baru. Jika dikosongkan, kartu akan otomatis menyesuaikan diri dengan rapi.')
                             ->columnSpanFull(),
 
                         TextInput::make('notes')

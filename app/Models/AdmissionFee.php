@@ -18,6 +18,7 @@ class AdmissionFee extends Model
         'monthly_tuition',
         'uniform_fee',
         'features',
+        'requirements',
         'notes',
         'sort_order',
         'is_published',
@@ -25,6 +26,7 @@ class AdmissionFee extends Model
 
     protected $casts = [
         'features' => 'array',
+        'requirements' => 'array',
         'is_published' => 'boolean',
         'registration_fee' => 'integer',
         'enrollment_fee' => 'integer',
