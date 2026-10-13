@@ -6,6 +6,7 @@ use App\Models\AdmissionFee;
 use App\Models\AdmissionWave;
 use App\Models\Gallery;
 use App\Models\News;
+use App\Models\SchoolProfile;
 use Illuminate\View\View;
 
 class PageController extends Controller
@@ -19,8 +20,9 @@ class PageController extends Controller
 
         $admissionWave = AdmissionWave::active()->latest('id')->first();
         $admissionFees = AdmissionFee::published()->get();
+        $profile = SchoolProfile::where('division', 'general')->first();
 
-        return view('home', compact('news', 'admissionWave', 'admissionFees'));
+        return view('home', compact('news', 'admissionWave', 'admissionFees', 'profile'));
     }
 
     public function sd(): View
@@ -34,8 +36,9 @@ class PageController extends Controller
         $admissionWave = AdmissionWave::active()->latest('id')->first();
         $admissionFee = AdmissionFee::published()->where('program_type', 'sd')->first();
         $news = News::published()->latest('published_at')->take(5)->get();
+        $profile = SchoolProfile::where('division', 'sd')->first();
 
-        return view('programs.sd', compact('galleries', 'admissionWave', 'admissionFee', 'news'));
+        return view('programs.sd', compact('galleries', 'admissionWave', 'admissionFee', 'news', 'profile'));
     }
 
     public function ponpes(): View
@@ -49,8 +52,9 @@ class PageController extends Controller
         $admissionWave = AdmissionWave::active()->latest('id')->first();
         $admissionFee = AdmissionFee::published()->where('program_type', 'ponpes')->first();
         $news = News::published()->latest('published_at')->take(5)->get();
+        $profile = SchoolProfile::where('division', 'ponpes')->first();
 
-        return view('programs.ponpes', compact('galleries', 'admissionWave', 'admissionFee', 'news'));
+        return view('programs.ponpes', compact('galleries', 'admissionWave', 'admissionFee', 'news', 'profile'));
     }
 
     public function kbtk(): View
@@ -64,8 +68,9 @@ class PageController extends Controller
         $admissionWave = AdmissionWave::active()->latest('id')->first();
         $admissionFee = AdmissionFee::published()->where('program_type', 'kbtk')->first();
         $news = News::published()->latest('published_at')->take(5)->get();
+        $profile = SchoolProfile::where('division', 'kbtk')->first();
 
-        return view('programs.kbtk', compact('galleries', 'admissionWave', 'admissionFee', 'news'));
+        return view('programs.kbtk', compact('galleries', 'admissionWave', 'admissionFee', 'news', 'profile'));
     }
 
     public function berita(): View

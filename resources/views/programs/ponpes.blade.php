@@ -49,30 +49,47 @@
     <div class="container">
       <div class="about-grid">
         <div class="about-image reveal-left">
-          <img src="{{ asset('image/ponpes/01JWWX3MRAJGRTSGPDKH3VR5Y8.jpg') }}" alt="Pondok Pesantren Sayf El Falah" loading="lazy" />
+          <img src="{{ !empty($profile->about_image) ? Storage::url($profile->about_image) : asset('image/ponpes/01JWWX3MRAJGRTSGPDKH3VR5Y8.jpg') }}" alt="Pondok Pesantren Sayf El Falah" loading="lazy" />
         </div>
         <div class="about-content reveal-right">
           <span class="section-badge">Tentang Ponpes</span>
-          <h3>Pondok Pesantren Sayf El Falah</h3>
-          <p>Pondok Pesantren Sayf El Falah adalah lembaga pendidikan Islam modern yang menggabungkan tradisi pesantren salaf dengan pendidikan formal berkualitas.</p>
-          <p>Santri mendapatkan pembinaan intensif dalam bidang agama, akademik, dan keterampilan hidup, sehingga siap menjadi generasi yang mandiri dan berdaya saing.</p>
+          <h3>{{ $profile->about_title ?? 'Pondok Pesantren Sayf El Falah' }}</h3>
+          @if($profile && !empty($profile->about_text))
+            @foreach(explode("\n\n", str_replace("\r\n", "\n", $profile->about_text)) as $paragraph)
+              @if(!empty(trim($paragraph)))
+                <p>{{ trim($paragraph) }}</p>
+              @endif
+            @endforeach
+          @else
+            <p>Pondok Pesantren Sayf El Falah adalah lembaga pendidikan Islam modern yang menggabungkan tradisi pesantren salaf dengan pendidikan formal berkualitas.</p>
+            <p>Santri mendapatkan pembinaan intensif dalam bidang agama, akademik, dan keterampilan hidup, sehingga siap menjadi generasi yang mandiri dan berdaya saing.</p>
+          @endif
           <ul class="feature-list">
-            <li>
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-              Tahfidzul Qur'an 30 Juz
-            </li>
-            <li>
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-              Bahasa Arab & Inggris Aktif
-            </li>
-            <li>
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-              Pendidikan Kepemimpinan
-            </li>
-            <li>
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-              Asrama Full-Boarding
-            </li>
+            @if($profile && !empty($profile->feature_list))
+              @foreach($profile->feature_list as $feature)
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  {{ $feature }}
+                </li>
+              @endforeach
+            @else
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                Tahfidzul Qur'an 30 Juz
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                Bahasa Arab & Inggris Aktif
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                Pendidikan Kepemimpinan
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                Asrama Full-Boarding
+              </li>
+            @endif
           </ul>
         </div>
       </div>
@@ -84,7 +101,7 @@
     <div class="container">
       <div class="section-header reveal">
         <span class="section-badge">Visi & Misi</span>
-        <h2 class="section-title">Arah Pendidikan Ponpes</h2>
+        <h2 class="section-title">{{ $profile->badge ?? 'Arah Pendidikan Ponpes' }}</h2>
         <div class="section-line"></div>
       </div>
 
@@ -94,7 +111,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
           </div>
           <h3 class="card-title">Visi</h3>
-          <p style="color:var(--gray-600);line-height:1.8;">Menjadi lembaga pendidikan Islam terdepan yang mencetak generasi beriman dan bertakwa kepada Allah, serta memiliki karakter yang kuat dan dapat dipercaya (Al-Qawoiyyul Amiin).</p>
+          <p style="color:var(--gray-600);line-height:1.8;">{{ $profile->vision ?? 'Menjadi lembaga pendidikan Islam terdepan yang mencetak generasi beriman dan bertakwa kepada Allah, serta memiliki karakter yang kuat dan dapat dipercaya (Al-Qawoiyyul Amiin).' }}</p>
         </div>
 
         <div class="misi-card reveal-right">
@@ -103,22 +120,31 @@
           </div>
           <h3 class="card-title">Misi</h3>
           <ul class="misi-list">
-            <li>
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span>Membentuk santri yang sehat jasmani dan rohani berdasarkan Qur'an dan Sunnah</span>
-            </li>
-            <li>
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span>Mencetak santri yang mandiri, kreatif, inovatif, dan memiliki jiwa kepimpinan untuk berperan aktif di tengah masyarakat</span>
-            </li>
-            <li>
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span>Menjadi lembaga pendidikan Islam yang dekat dan bermanfaat bagi seluruh lapisan masyarakat</span>
-            </li>
-            <li>
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span>Menyelenggarakan pendidikan yang berkualitas dengan metode dan sarana yang selalu mengikuti perkembangan zaman dengan menjunjung tinggi nilai-nilai keislamian</span>
-            </li>
+            @if($profile && !empty($profile->mission_list))
+              @foreach($profile->mission_list as $mission)
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>{{ $mission }}</span>
+                </li>
+              @endforeach
+            @else
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Membentuk santri yang sehat jasmani dan rohani berdasarkan Qur'an dan Sunnah</span>
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Mencetak santri yang mandiri, kreatif, inovatif, dan memiliki jiwa kepimpinan untuk berperan aktif di tengah masyarakat</span>
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Menjadi lembaga pendidikan Islam yang dekat dan bermanfaat bagi seluruh lapisan masyarakat</span>
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Menyelenggarakan pendidikan yang berkualitas dengan metode dan sarana yang selalu mengikuti perkembangan zaman dengan menjunjung tinggi nilai-nilai keislamian</span>
+              </li>
+            @endif
           </ul>
         </div>
       </div>

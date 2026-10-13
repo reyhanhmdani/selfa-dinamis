@@ -90,7 +90,7 @@
   <section class="section-padding bg-gradient-subtle" id="visimisi" style="zoom: 90%">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-badge">Visi & Misi</span>
+        <span class="section-badge">{{ $profile->badge ?? 'Visi & Misi' }}</span>
         <h2 class="section-title">Arah & Tujuan Kami</h2>
         <div class="section-line"></div>
       </div>
@@ -103,7 +103,7 @@
           </div>
           <h3 class="card-title">Visi Kami</h3>
           <p class="text-gray" style="line-height: 1.8;">
-            Membangun lingkungan pembelajaran paling ideal yang Islami, mutakhir, menyenangkan, dan terintegrasi dengan aktivitas kehidupan. Kami ingin membantu setiap anak tumbuh menjadi manusia utuh yang mampu menjadi pemimpin dan rahmat bagi dunia, sesuai dengan ajaran Allah Ta’ala dan Rasulullah shallallahu alaihi wa sallam.
+            {{ $profile->vision ?? 'Membangun lingkungan pembelajaran paling ideal yang Islami, mutakhir, menyenangkan, dan terintegrasi dengan aktivitas kehidupan. Kami ingin membantu setiap anak tumbuh menjadi manusia utuh yang mampu menjadi pemimpin dan rahmat bagi dunia, sesuai dengan ajaran Allah Ta’ala dan Rasulullah shallallahu alaihi wa sallam.' }}
           </p>
         </div>
 
@@ -114,26 +114,35 @@
           </div>
           <h3 class="card-title">Misi Kami</h3>
           <ul class="misi-list">
-            <li>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span>Membiasakan perilaku Islami dalam kehidupan sehari-hari anak-anak sesuai dengan Al-Qur'an dan As-Sunnah.</span>
-            </li>
-            <li>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span>Melaksanakan pembelajaran yang interaktif dan inovatif sesuai dengan perkembangan anak.</span>
-            </li>
-            <li>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span>Menjadikan Para Nabi sebagai teladan utama (role model) bagi anak-anak dalam setiap aspek kehidupan.</span>
-            </li>
-            <li>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span>Menyediakan metode pembelajaran yang komprehensif untuk mengembangkan seluruh aspek dasar manusia.</span>
-            </li>
-            <li>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span>Menjadi lingkungan tumbuh terbaik bagi anak-anak di masa keemasannya.</span>
-            </li>
+            @if($profile && !empty($profile->mission_list))
+              @foreach($profile->mission_list as $mission)
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>{{ $mission }}</span>
+                </li>
+              @endforeach
+            @else
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Membiasakan perilaku Islami dalam kehidupan sehari-hari anak-anak sesuai dengan Al-Qur'an dan As-Sunnah.</span>
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Melaksanakan pembelajaran yang interaktif dan inovatif sesuai dengan perkembangan anak.</span>
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Menjadikan Para Nabi sebagai teladan utama (role model) bagi anak-anak dalam setiap aspek kehidupan.</span>
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Menyediakan metode pembelajaran yang komprehensif untuk mengembangkan seluruh aspek dasar manusia.</span>
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Menjadi lingkungan tumbuh terbaik bagi anak-anak di masa keemasannya.</span>
+              </li>
+            @endif
           </ul>
         </div>
       </div>
@@ -152,32 +161,41 @@
     <div class="container">
       <div class="about-grid">
         <div class="about-image reveal-blur">
-          <img src="{{ asset('image/masjidselfa1.jpg') }}" alt="Masjid Sayf El Falah" />
+          <img src="{{ !empty($profile->about_image) ? Storage::url($profile->about_image) : asset('image/masjidselfa1.jpg') }}" alt="Masjid Sayf El Falah" />
         </div>
         <div class="about-content reveal-right">
-          <h3>Sejarah Singkat</h3>
+          <h3>{{ $profile->about_title ?? 'Sejarah Singkat' }}</h3>
           <p>
-            Sayf El Falah adalah sebuah yayasan pendidikan yang didirikan di atas keyakinan kuat bahwa setiap anak memiliki potensi unik yang harus dikembangkan sesuai dengan fitrahnya. Kami tidak hanya berkomitmen pada pendidikan formal, tetapi juga berfokus pada pembentukan karakter, kepemimpinan, dan kecintaan pada ilmu pengetahuan.
+            {{ $profile->about_text ?? 'Sayf El Falah adalah sebuah yayasan pendidikan yang didirikan di atas keyakinan kuat bahwa setiap anak memiliki potensi unik yang harus dikembangkan sesuai dengan fitrahnya. Kami tidak hanya berkomitmen pada pendidikan formal, tetapi juga berfokus pada pembentukan karakter, kepemimpinan, dan kecintaan pada ilmu pengetahuan.' }}
           </p>
           
           <h3>Keunggulan Kami</h3>
           <ul class="feature-list">
-            <li>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-              Guru berkualitas dan berpengalaman
-            </li>
-            <li>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-              Fasilitas pembelajaran lengkap dan modern
-            </li>
-            <li>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-              Kurikulum terpadu nasional dan islami
-            </li>
-            <li>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-              Lingkungan belajar yang nyaman dan kondusif
-            </li>
+            @if($profile && !empty($profile->feature_list))
+              @foreach($profile->feature_list as $feature)
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  {{ $feature }}
+                </li>
+              @endforeach
+            @else
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                Guru berkualitas dan berpengalaman
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                Fasilitas pembelajaran lengkap dan modern
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                Kurikulum terpadu nasional dan islami
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                Lingkungan belajar yang nyaman dan kondusif
+              </li>
+            @endif
           </ul>
         </div>
       </div>

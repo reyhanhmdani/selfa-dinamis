@@ -52,30 +52,47 @@
     <div class="container">
       <div class="about-grid">
         <div class="about-image reveal-left">
-          <img src="{{ asset('image/P1410680.JPG') }}" alt="Pembelajaran SD Alam" loading="lazy" />
+          <img src="{{ !empty($profile->about_image) ? Storage::url($profile->about_image) : asset('image/P1410680.JPG') }}" alt="Pembelajaran SD Alam" loading="lazy" />
         </div>
         <div class="about-content reveal-right">
           <span class="section-badge">Tentang SD Alam</span>
-          <h3>SD Alam Sayf El Falah</h3>
-          <p>SD Alam Sayf El Falah menghadirkan pengalaman belajar yang unik dengan mengintegrasikan kurikulum nasional, pendidikan agama Islam, dan konsep alam sebagai ruang belajar utama.</p>
-          <p>Di sini, siswa tidak hanya belajar di dalam kelas, tetapi juga di alam terbuka — menumbuhkan semangat eksplorasi, kecintaan pada ilmu pengetahuan, dan kepedulian terhadap lingkungan.</p>
+          <h3>{{ $profile->about_title ?? 'SD Alam Sayf El Falah' }}</h3>
+          @if($profile && !empty($profile->about_text))
+            @foreach(explode("\n\n", str_replace("\r\n", "\n", $profile->about_text)) as $paragraph)
+              @if(!empty(trim($paragraph)))
+                <p>{{ trim($paragraph) }}</p>
+              @endif
+            @endforeach
+          @else
+            <p>SD Alam Sayf El Falah menghadirkan pengalaman belajar yang unik dengan mengintegrasikan kurikulum nasional, pendidikan agama Islam, dan konsep alam sebagai ruang belajar utama.</p>
+            <p>Di sini, siswa tidak hanya belajar di dalam kelas, tetapi juga di alam terbuka — menumbuhkan semangat eksplorasi, kecintaan pada ilmu pengetahuan, dan kepedulian terhadap lingkungan.</p>
+          @endif
           <ul class="feature-list">
-            <li>
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-              Kurikulum Nasional + Islam Terpadu
-            </li>
-            <li>
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-              Pembelajaran Berbasis Alam
-            </li>
-            <li>
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-              Tahfidzul Qur'an
-            </li>
-            <li>
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-              Life Skills & Leadership
-            </li>
+            @if($profile && !empty($profile->feature_list))
+              @foreach($profile->feature_list as $feature)
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  {{ $feature }}
+                </li>
+              @endforeach
+            @else
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                Kurikulum Nasional + Islam Terpadu
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                Pembelajaran Berbasis Alam
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                Tahfidzul Qur'an
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                Life Skills & Leadership
+              </li>
+            @endif
           </ul>
         </div>
       </div>
@@ -88,7 +105,7 @@
     <div class="container">
       <div class="section-header reveal">
         <span class="section-badge">Visi & Misi</span>
-        <h2 class="section-title">Arah Pendidikan SD Alam</h2>
+        <h2 class="section-title">{{ $profile->badge ?? 'Arah Pendidikan SD Alam' }}</h2>
         <div class="section-line"></div>
       </div>
 
@@ -98,7 +115,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
           </div>
           <h3 class="card-title">Visi</h3>
-          <p style="color:var(--gray-600);line-height:1.8;">Menjadi Sekolah yang membantu setiap anak tumbuh sesuai fitrahnya, hingga menjadi manusia utuh yang mampu menjadi pemimpin dan rahmat bagi dunia sesuai keinginan Allah Ta'ala dan Rasulullah shollallahu alaihi wa sallam.</p>
+          <p style="color:var(--gray-600);line-height:1.8;">{{ $profile->vision ?? "Menjadi Sekolah yang membantu setiap anak tumbuh sesuai fitrahnya, hingga menjadi manusia utuh yang mampu menjadi pemimpin dan rahmat bagi dunia sesuai keinginan Allah Ta'ala dan Rasulullah shollallahu alaihi wa sallam." }}</p>
         </div>
 
         <div class="misi-card reveal-right">
@@ -107,14 +124,23 @@
           </div>
           <h3 class="card-title">Misi</h3>
           <ul class="misi-list">
-            <li>
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span>Menyediakan metode pembelajaran yang mengembangkan dan menyentuh seluruh aspek dasar manusia meliputi akal, rasa, fisik, mental dan sosial</span>
-            </li>
-            <li>
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span>Menjadi tempat tumbuh terbaik bagi anak di masa depan keemasannya dengan memberikan beragam pengalaman kehidupan yang dibutuhkan di masa depan</span>
-            </li>
+            @if($profile && !empty($profile->mission_list))
+              @foreach($profile->mission_list as $mission)
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>{{ $mission }}</span>
+                </li>
+              @endforeach
+            @else
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Menyediakan metode pembelajaran yang mengembangkan dan menyentuh seluruh aspek dasar manusia meliputi akal, rasa, fisik, mental dan sosial</span>
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Menjadi tempat tumbuh terbaik bagi anak di masa depan keemasannya dengan memberikan beragam pengalaman kehidupan yang dibutuhkan di masa depan</span>
+              </li>
+            @endif
           </ul>
         </div>
       </div>

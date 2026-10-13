@@ -2,14 +2,19 @@
 
 namespace Tests\Feature;
 
+use App\Filament\Resources\GeneralProfileResource;
 use App\Filament\Resources\KbtkFeeResource;
 use App\Filament\Resources\KbtkGalleryResource;
+use App\Filament\Resources\KbtkProfileResource;
 use App\Filament\Resources\PonpesFeeResource;
 use App\Filament\Resources\PonpesGalleryResource;
+use App\Filament\Resources\PonpesProfileResource;
 use App\Filament\Resources\SdFeeResource;
 use App\Filament\Resources\SdGalleryResource;
+use App\Filament\Resources\SdProfileResource;
 use App\Models\AdmissionFee;
 use App\Models\Gallery;
+use App\Models\SchoolProfile;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -46,6 +51,12 @@ class FilamentDivisionResourcesTest extends TestCase
         $this->get('/admin/kbtk-galleries')->assertSuccessful();
         $this->get('/admin/sd-galleries')->assertSuccessful();
         $this->get('/admin/ponpes-galleries')->assertSuccessful();
+
+        // Profile & Visi Misi resources per division
+        $this->get('/admin/kbtk-profile')->assertSuccessful();
+        $this->get('/admin/sd-profile')->assertSuccessful();
+        $this->get('/admin/ponpes-profile')->assertSuccessful();
+        $this->get('/admin/general-profile')->assertSuccessful();
 
         // Central / global resources
         $this->get('/admin/admission-waves')->assertSuccessful();
@@ -106,6 +117,27 @@ class FilamentDivisionResourcesTest extends TestCase
         $this->assertEquals(
             ['ponpes'],
             PonpesGalleryResource::getEloquentQuery()->pluck('type')->unique()->values()->all()
+        );
+
+        // Assert Profile queries
+        $this->assertEquals(
+            ['kbtk'],
+            KbtkProfileResource::getEloquentQuery()->pluck('division')->unique()->values()->all()
+        );
+
+        $this->assertEquals(
+            ['sd'],
+            SdProfileResource::getEloquentQuery()->pluck('division')->unique()->values()->all()
+        );
+
+        $this->assertEquals(
+            ['ponpes'],
+            PonpesProfileResource::getEloquentQuery()->pluck('division')->unique()->values()->all()
+        );
+
+        $this->assertEquals(
+            ['general'],
+            GeneralProfileResource::getEloquentQuery()->pluck('division')->unique()->values()->all()
         );
     }
 }
