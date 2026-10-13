@@ -29,12 +29,14 @@ trait HasSchoolProfileSchema
     public static function getProfileFormSchema(Schema $schema, string $defaultDivision): Schema
     {
         return $schema
+            ->columns(1)
             ->components([
                 Hidden::make('division')
                     ->default($defaultDivision),
 
                 Section::make('Identitas Bagian')
                     ->description('Judul lembaga dan badge section pada halaman website')
+                    ->columnSpanFull()
                     ->schema([
                         TextInput::make('title')
                             ->label('Nama Lembaga / Halaman')
@@ -50,6 +52,7 @@ trait HasSchoolProfileSchema
 
                 Section::make('Visi & Misi')
                     ->description('Teks visi dan butir-butir misi yang tampil pada kartu visi-misi')
+                    ->columnSpanFull()
                     ->schema([
                         Textarea::make('vision')
                             ->label('Visi')
@@ -74,6 +77,7 @@ trait HasSchoolProfileSchema
 
                 Section::make('Profil & Tentang Sekolah')
                     ->description('Konten section Tentang Kami / Sejarah dan foto pendukung')
+                    ->columnSpanFull()
                     ->schema([
                         TextInput::make('about_title')
                             ->label('Judul Bagian Tentang')
@@ -98,6 +102,7 @@ trait HasSchoolProfileSchema
 
                 Section::make('Poin Keunggulan / Fasilitas')
                     ->description('Daftar keunggulan dengan icon checklist bintang')
+                    ->columnSpanFull()
                     ->schema([
                         Repeater::make('features')
                             ->label('Daftar Poin Keunggulan')
