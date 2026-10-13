@@ -47,8 +47,24 @@ function initPageLoader() {
     const content = document.querySelector('.page-content');
     if (!loader) return;
 
-    // Selalu tampilkan loader + curtain reveal di setiap load
-    const MIN_DISPLAY = 2200;
+    // Typewriter effect untuk teks Sayf El Falah
+    const textEl = document.getElementById('loader-text');
+    if (textEl) {
+        const fullText = "Sayf El Falah";
+        textEl.textContent = "";
+        let charIndex = 0;
+        const typeTimer = setInterval(() => {
+            if (charIndex < fullText.length) {
+                textEl.textContent += fullText.charAt(charIndex);
+                charIndex++;
+            } else {
+                clearInterval(typeTimer);
+            }
+        }, 60);
+    }
+
+    // Durasi optimal & ramah pengguna (1.5 detik)
+    const MIN_DISPLAY = 1500;
     const startTime = Date.now();
 
     function doReveal() {

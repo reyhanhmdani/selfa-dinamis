@@ -16,7 +16,9 @@
           <a href="{{ route('program.ponpes') }}">Pondok Pesantren</a>
         </div>
       </div>
+      <a href="{{ route('home') }}#biaya" class="nav-link">Biaya & PPDB</a>
       <a href="{{ route('berita.index') }}" class="nav-link">Berita</a>
+      <a href="{{ route('home') }}#biaya" class="nav-cta-btn">Info PPDB</a>
     </div>
 
     <button class="mobile-menu-btn" id="mobile-menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Buka menu navigasi">
@@ -36,6 +38,7 @@
       <a href="{{ route('program.sd') }}">SD Alam Selfa</a>
       <a href="{{ route('program.ponpes') }}">Pondok Pesantren</a>
     </div>
+    <a href="{{ route('home') }}#biaya">Biaya & PPDB</a>
     <a href="{{ route('berita.index') }}">Berita</a>
   </div>
 </nav>

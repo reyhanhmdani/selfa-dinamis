@@ -26,19 +26,12 @@
             <span></span><span></span><span></span><span></span><span></span><span></span>
         </div>
         <div class="loader-center">
-            <div class="loader-ring">
-                <svg viewBox="0 0 100 100">
-                    <circle class="loader-ring-bg" cx="50" cy="50" r="42" fill="none" stroke-width="3" />
-                    <circle class="loader-ring-progress" cx="50" cy="50" r="42" fill="none" stroke-width="3" />
-                </svg>
-                <div class="loader-icon">
-                    <img src="{{ asset('image/icon-sd-selfa.png') }}" alt="Logo" />
-                </div>
+            <div class="loader-typewriter-wrapper">
+                <span class="loader-typewriter" id="loader-text">Sayf El Falah</span>
+                <span class="loader-cursor"></span>
             </div>
-            <div class="loader-text">
-                <span class="loader-letter" style="--i:0">S</span><span class="loader-letter" style="--i:1">a</span><span class="loader-letter" style="--i:2">y</span><span class="loader-letter" style="--i:3">f</span><span class="loader-letter loader-space" style="--i:4">&nbsp;</span><span class="loader-letter" style="--i:5">E</span><span class="loader-letter" style="--i:6">l</span><span class="loader-letter loader-space" style="--i:7">&nbsp;</span><span class="loader-letter" style="--i:8">F</span><span class="loader-letter" style="--i:9">a</span><span class="loader-letter" style="--i:10">l</span><span class="loader-letter" style="--i:11">a</span><span class="loader-letter" style="--i:12">h</span>
-            </div>
-            <p class="loader-tagline">Membentuk Generasi Unggul</p>
+            <div class="loader-line-glow"></div>
+            <p class="loader-tagline">Sekolah Alam & Pondok Pesantren</p>
         </div>
     </div>
 
@@ -70,6 +63,9 @@
         <button class="lightbox-btn lightbox-next"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
         <div class="lightbox-thumbs"></div>
     </div>
+
+    <!-- Floating WhatsApp CTA -->
+    @include('partials.floating-wa')
 
 </body>
 </html>

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdmissionFee;
+use App\Models\AdmissionWave;
 use App\Models\Gallery;
 use App\Models\News;
 use Illuminate\View\View;
@@ -15,7 +17,10 @@ class PageController extends Controller
             ->take(5)
             ->get();
 
-        return view('home', compact('news'));
+        $admissionWave = AdmissionWave::active()->latest('id')->first();
+        $admissionFees = AdmissionFee::published()->get();
+
+        return view('home', compact('news', 'admissionWave', 'admissionFees'));
     }
 
     public function sd(): View

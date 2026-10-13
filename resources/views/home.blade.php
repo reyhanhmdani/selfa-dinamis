@@ -10,15 +10,25 @@
     </div>
 
     <div class="hero-content">
-      <p class="hero-subtitle">Sekolah Alam & Pondok pesantren</p>
+      <p class="hero-subtitle">Sekolah Alam & Pondok Pesantren</p>
       <h1 class="hero-title">Sayf El Falah</h1>
       <p class="hero-desc">
-        Membentuk generasi pemimpin yang hafal Al-Qur'an, cerdas secara akademis, dan tangguh di era digital.
+        Membentuk generasi pemimpin yang hafal Al-Qur'an, beradab mulia, cerdas akademis, dan tangguh di alam. Pendidikan terpadu berbasis Al-Qur'an dan Sunnah untuk masa depan ananda.
       </p>
+
       <div class="hero-actions">
-        <a href="#about" class="hero-cta">
-          Mengenal Kami
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+        @php
+          $waNumber = $admissionWave?->clean_whatsapp ?? '6282122073707';
+          $waMsg = rawurlencode('Bismillah Ustadz/Panitia PPDB, saya ingin menanyakan pendaftaran santri baru di Sayf El Falah.');
+        @endphp
+        <a href="https://wa.me/{{ $waNumber }}?text={{ $waMsg }}" target="_blank" rel="noopener noreferrer" class="hero-cta hero-cta-wa">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+          Konsultasi PPDB (WhatsApp)
+        </a>
+
+        <a href="#biaya" class="hero-cta hero-cta-outline">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          Biaya & Pendaftaran
         </a>
       </div>
     </div>
@@ -28,6 +38,53 @@
       <span>Scroll</span>
     </div>
   </header>
+
+  <!-- ============ TRUST BAR SECTION ============ -->
+  <section class="trust-bar-section">
+    <div class="container">
+      <div class="trust-bar-grid">
+        <div class="trust-item reveal-scale">
+          <div class="trust-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path><path d="M6 6h10"></path><path d="M6 10h10"></path></svg>
+          </div>
+          <div class="trust-text">
+            <h4>Aqidah & Sunnah</h4>
+            <p>Pembiasaan ibadah shahihah & adab nabawiyyah sejak dini</p>
+          </div>
+        </div>
+
+        <div class="trust-item reveal-scale" style="transition-delay: 100ms;">
+          <div class="trust-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+          </div>
+          <div class="trust-text">
+            <h4>Tahfidz Bersanad</h4>
+            <p>Target mutqin dari Juz 30 hingga 30 Juz secara bertahap</p>
+          </div>
+        </div>
+
+        <div class="trust-item reveal-scale" style="transition-delay: 200ms;">
+          <div class="trust-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </div>
+          <div class="trust-text">
+            <h4>Pendidikan Alam</h4>
+            <p>Mengasah fitrah, kepemimpinan & lifeskill di alam terbuka</p>
+          </div>
+        </div>
+
+        <div class="trust-item reveal-scale" style="transition-delay: 300ms;">
+          <div class="trust-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          </div>
+          <div class="trust-text">
+            <h4>Kampus Terpisah</h4>
+            <p>Lingkungan aman dengan pemisahan ikhwan & akhwat</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ============ VISI & MISI ============ -->
   <section class="section-padding bg-gradient-subtle" id="visimisi" style="zoom: 90%">
@@ -194,6 +251,121 @@
       </div>
     </div>
   </section>
+
+  <!-- ============ SPMB & BIAYA PENDIDIKAN ============ -->
+  <section class="section-padding bg-gradient-subtle" id="biaya">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-badge">Informasi SPMB & PPDB</span>
+        <h2 class="section-title">Biaya Pendidikan & Pendaftaran</h2>
+        <div class="section-line"></div>
+        <p class="section-desc">
+          Transparansi biaya pendidikan untuk tahun ajaran baru. Investasi terbaik untuk pendidikan adab, tahfidz, dan masa depan ananda.
+        </p>
+      </div>
+
+      @if($admissionWave && $admissionWave->is_active)
+        <div class="spmb-banner-card reveal-scale">
+          <div class="spmb-banner-content">
+            <div class="spmb-banner-header">
+              <span class="spmb-status-pill">Pendaftaran Dibuka</span>
+              <h3 class="spmb-wave-title">{{ $admissionWave->wave_name }}</h3>
+            </div>
+            @if($admissionWave->announcement)
+              <p class="spmb-banner-desc">{{ $admissionWave->announcement }}</p>
+            @endif
+            @if($admissionWave->start_date && $admissionWave->end_date)
+              <div class="spmb-banner-date">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect><line x1="16" x2="16" y1="2" y2="6"></line><line x1="8" x2="8" y1="2" y2="6"></line><line x1="3" x2="21" y1="10" y2="10"></line></svg>
+                <span>Periode: <strong>{{ $admissionWave->start_date->format('d M Y') }}</strong> s.d <strong>{{ $admissionWave->end_date->format('d M Y') }}</strong></span>
+              </div>
+            @endif
+          </div>
+
+          <div class="spmb-banner-actions">
+            @if($admissionWave->brochure_file)
+              <a href="{{ asset('storage/' . $admissionWave->brochure_file) }}" target="_blank" class="spmb-btn spmb-btn-brochure">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg>
+                Unduh Brosur (PDF)
+              </a>
+            @endif
+            <a href="https://wa.me/{{ $admissionWave->clean_whatsapp }}?text={{ rawurlencode('Bismillah Ustadz, saya ingin mendaftarkan anak saya untuk ' . $admissionWave->wave_name) }}" target="_blank" rel="noopener noreferrer" class="spmb-btn spmb-btn-daftar">
+              Daftar Sekarang
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+        </div>
+      @endif
+
+      <!-- Grid Kartu Biaya Per Jenjang -->
+      @if($admissionFees->isNotEmpty())
+        <div class="fees-grid stagger-container">
+          @foreach($admissionFees as $fee)
+            <div class="fee-card stagger-item {{ $fee->program_type === 'sd' ? 'featured' : '' }}">
+              @if($fee->program_type === 'sd')
+                <div class="fee-featured-badge">Paling Diminati</div>
+              @endif
+              <div class="fee-card-header">
+                <span class="fee-program-type">
+                  @if($fee->program_type === 'kbtk') KB & TK
+                  @elseif($fee->program_type === 'sd') SD Alam
+                  @else Pondok Pesantren
+                  @endif
+                </span>
+                <h3 class="fee-program-title">{{ $fee->title }}</h3>
+              </div>
+
+              <div class="fee-pricing-box">
+                <span class="fee-label">Uang Pangkal / Masuk</span>
+                <div class="fee-amount">{{ $fee->formatted_enrollment_fee }}</div>
+                <div class="fee-monthly">
+                  <span>SPP: <strong>{{ $fee->formatted_monthly_tuition }}</strong> / bulan</span>
+                </div>
+              </div>
+
+              <div class="fee-details-list">
+                <div class="fee-detail-row">
+                  <span>Biaya Formulir Pendaftaran:</span>
+                  <strong>{{ $fee->formatted_registration_fee }}</strong>
+                </div>
+                @if($fee->uniform_fee)
+                  <div class="fee-detail-row">
+                    <span>Seragam & Perlengkapan:</span>
+                    <strong>{{ $fee->formatted_uniform_fee }}</strong>
+                  </div>
+                @endif
+              </div>
+
+              @if(!empty($fee->features))
+                <div class="fee-features-box">
+                  <span class="fee-features-title">Fasilitas Termasuk:</span>
+                  <ul class="fee-features-list">
+                    @foreach($fee->features as $feature)
+                      <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <span>{{ $feature }}</span>
+                      </li>
+                    @endforeach
+                  </ul>
+                </div>
+              @endif
+
+              @if($fee->notes)
+                <p class="fee-notes">* {{ $fee->notes }}</p>
+              @endif
+
+              <div class="fee-card-action">
+                <a href="https://wa.me/{{ $admissionWave?->clean_whatsapp ?? '6282122073707' }}?text={{ rawurlencode('Bismillah Ustadz, saya ingin menanyakan rincian pendaftaran untuk jenjang ' . $fee->title) }}" target="_blank" rel="noopener noreferrer" class="fee-cta-btn">
+                  Konsultasi Jenjang Ini
+                </a>
+              </div>
+            </div>
+          @endforeach
+        </div>
+      @endif
+    </div>
+  </section>
+
   <!-- ============ SCHOOL NEWS SLIDER ============ -->
   <x-news-slider :news="$news" />
 
