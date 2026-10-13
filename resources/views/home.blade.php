@@ -301,9 +301,11 @@
       @if($admissionFees->isNotEmpty())
         <div class="fees-grid stagger-container">
           @foreach($admissionFees as $fee)
-            <div class="fee-card stagger-item {{ $fee->program_type === 'sd' ? 'featured' : '' }}">
+            <div class="fee-card stagger-item {{ $fee->program_type === 'sd' ? 'featured' : '' }} {{ $fee->is_free ? 'fee-card-free' : '' }}">
               @if($fee->program_type === 'sd')
                 <div class="fee-featured-badge">Paling Diminati</div>
+              @elseif($fee->is_free)
+                <div class="fee-featured-badge" style="background:#0284c7;">100% Beasiswa</div>
               @endif
               <div class="fee-card-header">
                 <span class="fee-program-type">
@@ -316,11 +318,19 @@
               </div>
 
               <div class="fee-pricing-box">
-                <span class="fee-label">Uang Pangkal / Masuk</span>
-                <div class="fee-amount">{{ $fee->formatted_enrollment_fee }}</div>
-                <div class="fee-monthly">
-                  <span>SPP: <strong>{{ $fee->formatted_monthly_tuition }}</strong> / bulan</span>
-                </div>
+                @if($fee->is_free)
+                  <span class="fee-label">Biaya Pendidikan Santri</span>
+                  <div class="fee-amount" style="color:#059669; font-size:2rem;">GRATIS</div>
+                  <div class="fee-monthly">
+                    <span style="color:#047857; font-weight:600;">Beasiswa Penuh (Free SPP & Asrama)</span>
+                  </div>
+                @else
+                  <span class="fee-label">Uang Pangkal / Masuk</span>
+                  <div class="fee-amount">{{ $fee->formatted_enrollment_fee }}</div>
+                  <div class="fee-monthly">
+                    <span>SPP: <strong>{{ $fee->formatted_monthly_tuition }}</strong> / bulan</span>
+                  </div>
+                @endif
               </div>
 
               <div class="fee-details-list">
@@ -328,7 +338,12 @@
                   <span>Biaya Formulir Pendaftaran:</span>
                   <strong>{{ $fee->formatted_registration_fee }}</strong>
                 </div>
-                @if($fee->uniform_fee)
+                @if($fee->is_free)
+                  <div class="fee-detail-row">
+                    <span>Asrama & Konsumsi 3x Sehari:</span>
+                    <strong style="color:#059669;">Gratis (Ditanggung)</strong>
+                  </div>
+                @elseif($fee->uniform_fee)
                   <div class="fee-detail-row">
                     <span>Seragam & Perlengkapan:</span>
                     <strong>{{ $fee->formatted_uniform_fee }}</strong>
@@ -356,7 +371,7 @@
 
               <div class="fee-card-action">
                 <a href="https://wa.me/{{ $admissionWave?->clean_whatsapp ?? '6282122073707' }}?text={{ rawurlencode('Bismillah Ustadz, saya ingin menanyakan rincian pendaftaran untuk jenjang ' . $fee->title) }}" target="_blank" rel="noopener noreferrer" class="fee-cta-btn">
-                  Konsultasi Jenjang Ini
+                  {{ $fee->is_free ? 'Konsultasi Beasiswa Ponpes' : 'Konsultasi Jenjang Ini' }}
                 </a>
               </div>
             </div>

@@ -3735,6 +3735,17 @@ body.js-enabled .reveal-bounce.active {
   .fees-grid {
     grid-template-columns: 1fr;
   }
+  .program-spmb-card {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 1.75rem 1.25rem;
+  }
+  .program-features-grid {
+    grid-template-columns: 1fr;
+  }
+  .program-metric-grid {
+    grid-template-columns: 1fr;
+  }
   .floating-wa-text {
     display: none;
   }
@@ -3742,5 +3753,312 @@ body.js-enabled .reveal-bounce.active {
     padding: 0.85rem;
     border-radius: 50%;
   }
+}
+
+/* ============ PROGRAM SPMB & ADMISSIONS SHOWCASE ============ */
+.program-spmb-wrapper {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+.program-spmb-card {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2.75rem;
+  background: #ffffff;
+  border-radius: 1.5rem;
+  padding: 2.75rem;
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  position: relative;
+  overflow: hidden;
+}
+.program-spmb-card.is-scholarship {
+  border-top: 5px solid #059669;
+}
+.program-spmb-card.is-featured {
+  border-top: 5px solid #10b981;
+}
+.program-spmb-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+.program-spmb-badge.scholarship {
+  background: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+}
+.program-spmb-badge.regular {
+  background: #f0fdf4;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+.program-spmb-badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: pulse-dot 2s infinite ease-in-out;
+}
+.program-spmb-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0.5rem 0 0.4rem 0;
+  line-height: 1.25;
+}
+.program-spmb-desc {
+  font-size: 0.92rem;
+  color: #64748b;
+  line-height: 1.55;
+  margin-bottom: 1.5rem;
+}
+
+/* Metric Boxes */
+.program-metric-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.program-metric-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.875rem;
+  padding: 1rem 0.85rem;
+  text-align: center;
+}
+.program-metric-box .metric-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.35rem;
+}
+.program-metric-box .metric-value {
+  display: block;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #059669;
+}
+.program-metric-box .metric-sub {
+  display: block;
+  font-size: 0.72rem;
+  color: #94a3b8;
+  margin-top: 0.2rem;
+}
+
+/* Scholarship Big Banner */
+.scholarship-highlight-banner {
+  background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%);
+  border: 1.5px solid #a7f3d0;
+  border-radius: 1.25rem;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+.scholarship-badge-pill {
+  display: inline-block;
+  background: #059669;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  margin-bottom: 0.5rem;
+}
+.scholarship-amount-headline {
+  font-size: 2.15rem;
+  font-weight: 900;
+  color: #047857;
+  line-height: 1.15;
+  margin-bottom: 0.35rem;
+}
+.scholarship-tagline {
+  font-size: 0.9rem;
+  color: #065f46;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+.scholarship-pills-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.scholarship-item-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #ffffff;
+  border: 1px solid #bbf7d0;
+  padding: 0.4rem 0.75rem;
+  border-radius: 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #047857;
+}
+
+/* Features Grid */
+.program-features-section {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px dashed #e2e8f0;
+}
+.program-features-heading {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #334155;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+.program-features-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem 1.25rem;
+}
+.program-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  font-size: 0.85rem;
+  color: #475569;
+  line-height: 1.4;
+}
+.program-feature-item svg {
+  color: #059669;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+.program-spmb-notes {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  font-style: italic;
+  margin-top: 1rem;
+}
+
+/* Right Side - Action Card */
+.program-spmb-side {
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+  border: 1px solid #e2e8f0;
+  border-radius: 1.25rem;
+  padding: 2rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.program-spmb-wave-card {
+  margin-bottom: 1.5rem;
+}
+.spmb-wave-badge {
+  display: inline-block;
+  background: #dbeafe;
+  color: #1e40af;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  margin-bottom: 0.5rem;
+}
+.spmb-wave-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 0.35rem 0;
+}
+.spmb-wave-date-range {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.82rem;
+  color: #64748b;
+}
+.program-quick-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.program-quick-checklist li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  color: #475569;
+}
+.program-quick-checklist li svg {
+  color: #059669;
+  flex-shrink: 0;
+}
+.program-spmb-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.btn-spmb-wa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.95rem 1.25rem;
+  background: var(--gradient-primary, linear-gradient(135deg, #059669, #10b981));
+  color: #ffffff;
+  font-size: 0.92rem;
+  font-weight: 600;
+  border-radius: 0.85rem;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(5, 150, 105, 0.25);
+  transition: all 0.25s ease;
+}
+.btn-spmb-wa:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(5, 150, 105, 0.35);
+  color: #ffffff;
+}
+.btn-spmb-pdf {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.25rem;
+  background: #ffffff;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 0.85rem;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+.btn-spmb-pdf:hover {
+  background: #f8fafc;
+  color: #0f172a;
+  border-color: #94a3b8;
+  transform: translateY(-2px);
+}
+.program-spmb-guarantee {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin-top: 0.75rem;
+  text-align: center;
 }
 

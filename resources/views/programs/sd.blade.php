@@ -321,224 +321,128 @@
   <!-- ============ SCHOOL NEWS SLIDER ============ -->
   <x-news-slider :news="$news" />
 
-  <!-- ============ PPDB PREMIUM SECTION (VANILLA CSS) ============ -->
-  <section class="ppdb-section" id="pendaftaran">
-    <div class="ppdb-bg-shapes">
-      <div class="ppdb-shape-1"></div>
-      <div class="ppdb-shape-2"></div>
-    </div>
-
-    <div class="container relative z-10">
-      <!-- Header -->
-      <div class="ppdb-header reveal">
-        <div class="ppdb-badge">
-          <div class="ppdb-badge-dot"></div>
-          <span class="ppdb-badge-text">Pendaftaran Dibuka</span>
-        </div>
-        <h2 class="ppdb-title">
-          Mulai Perjalanan <br />
-          <span>Penuh Makna.</span>
-        </h2>
-        <p class="ppdb-desc">
-          Bergabunglah dengan ekosistem pendidikan yang menyatukan <strong>Alam, Al-Qur'an, dan Logika</strong>.
+  <!-- ============ SPMB & BIAYA PENDIDIKAN SD ============ -->
+  <section class="section-padding bg-gradient-subtle" id="pendaftaran">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-badge">Informasi SPMB & Biaya</span>
+        <h2 class="section-title">Biaya Pendidikan SD Alam Selfa</h2>
+        <div class="section-line"></div>
+        <p class="section-desc">
+          Transparansi investasi pendidikan terpadu berbasis alam dan Al-Qur'an untuk menumbuhkan fitrah kepemimpinan, adab, dan kemandirian ananda.
         </p>
       </div>
 
-      <!-- Ticket Grid -->
-      <div class="ppdb-tickets-grid stagger-container">
-        <!-- Ticket 1: Gelombang Aktif -->
-        <div class="ppdb-ticket stagger-item">
-          <div class="ticket-badge">Info Gelombang</div>
-          <div class="ppdb-ticket-inner">
-            <h3 class="ticket-wave">{{ $admissionWave?->wave_name ?? 'Gelombang SPMB' }}</h3>
-            <p class="ticket-period">
-              @if($admissionWave && $admissionWave->start_date && $admissionWave->end_date)
-                {{ $admissionWave->start_date->format('d M') }} — {{ $admissionWave->end_date->format('d M Y') }}
-              @else
-                Pendaftaran Sedang Dibuka
-              @endif
+      <div class="program-spmb-wrapper reveal-scale">
+        <div class="program-spmb-card is-featured">
+          <!-- Main Left Column -->
+          <div class="program-spmb-main">
+            <span class="program-spmb-badge regular">
+              <span class="program-spmb-badge-dot"></span>
+              Pendidikan Dasar Islami • Sekolah Alam
+            </span>
+            <h3 class="program-spmb-title">{{ $admissionFee?->title ?? 'SD Alam Sayf El Falah' }}</h3>
+            <p class="program-spmb-desc">
+              Membentuk generasi pemimpin berkarakter Qur'ani yang tangguh dan cerdas secara akademis, melalui perpaduan kurikulum nasional, diniyyah intensif, dan eksplorasi alam terbuka.
             </p>
-            <div class="ticket-price">
-              <span class="ticket-price-label">Formulir Pendaftaran</span>
-              <div class="ticket-price-wrapper">
-                <span class="ticket-amount">{{ $admissionFee?->formatted_registration_fee ?? 'Rp 200.000' }}</span>
-              </div>
-            </div>
-            <div class="ppdb-ticket-dash"></div>
-          </div>
-        </div>
 
-        <!-- Ticket 2: Uang Pangkal -->
-        <div class="ppdb-ticket stagger-item">
-          <div class="ticket-badge" style="background:#059669;">Investasi Masuk</div>
-          <div class="ppdb-ticket-inner">
-            <h3 class="ticket-wave">Uang Pangkal</h3>
-            <p class="ticket-period">Investasi Awal Jenjang SD</p>
-            <div class="ticket-price ticket-orange">
-              <span class="ticket-price-label">Total Uang Pangkal</span>
-              <div class="ticket-price-wrapper">
-                <span class="ticket-amount">{{ $admissionFee?->formatted_enrollment_fee ?? 'Rp 6.500.000' }}</span>
+            <!-- Metric Grid: 3 Boxes Side by Side -->
+            <div class="program-metric-grid">
+              <div class="program-metric-box">
+                <span class="metric-label">Uang Pangkal / Masuk</span>
+                <span class="metric-value">{{ $admissionFee?->formatted_enrollment_fee ?? 'Rp 4.500.000' }}</span>
+                <span class="metric-sub">Investasi Awal Jenjang SD</span>
               </div>
-            </div>
-            <div class="ppdb-ticket-dash"></div>
-          </div>
-        </div>
-
-        <!-- Ticket 3: SPP Bulanan -->
-        <div class="ppdb-ticket stagger-item">
-          <div class="ticket-inner">
-            <h3 class="ticket-wave">SPP Bulanan</h3>
-            <p class="ticket-period">Pendidikan & Pembinaan</p>
-            <div class="ticket-price ticket-red">
-              <span class="ticket-price-label">Per Bulan</span>
-              <div class="ticket-price-wrapper">
-                <span class="ticket-amount">{{ $admissionFee?->formatted_monthly_tuition ?? 'Rp 450.000' }}</span>
+              <div class="program-metric-box">
+                <span class="metric-label">SPP Bulanan</span>
+                <span class="metric-value">{{ $admissionFee?->formatted_monthly_tuition ?? 'Rp 400.000' }}</span>
+                <span class="metric-sub">Per bulan (Inklusif)</span>
               </div>
-            </div>
-            <div class="ppdb-ticket-dash"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Content Grid -->
-      <div class="ppdb-content-grid">
-        <!-- Left: Requirements -->
-        <div class="ppdb-left-col reveal-left">
-          <div class="ppdb-requirements-card">
-            <div class="req-header">
-              <div class="req-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-              </div>
-              <h3 class="req-title">Persyaratan Usia</h3>
-            </div>
-            <ul class="req-list">
-              <li class="req-item">
-                <div class="req-number">1</div>
-                <div class="req-text">
-                  <strong>Kelas 1 SD</strong>
-                  <span>Minimal 6 Tahun per Juli tahun ajaran berjalan</span>
-                </div>
-              </li>
-              <li class="req-item">
-                <div class="req-number">2</div>
-                <div class="req-text">
-                  <strong>Pindahan / Mutasi</strong>
-                  <span>Menyertakan rapor dan surat mutasi resmi</span>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <div class="ppdb-admin-card">
-            <h3 class="req-title" style="color:white; margin-bottom:1.5rem">Berkas Persyaratan</h3>
-            <ul class="admin-list">
-              <li><div class="admin-dot"></div> Fotokopi Akta Kelahiran (2 lembar)</li>
-              <li><div class="admin-dot"></div> Fotokopi Kartu Keluarga (2 lembar)</li>
-              <li><div class="admin-dot"></div> Fotokopi KTP Orang Tua (Ayah & Ibu)</li>
-              <li><div class="admin-dot"></div> Pas foto santri 3x4 (3 lembar)</li>
-              <li><div class="admin-dot"></div> Ijazah / Surat Keterangan TK (jika ada)</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Right: Receipt -->
-        <div class="ppdb-right-col reveal-right">
-          <div class="ppdb-receipt">
-            <div class="receipt-header">
-              <div class="receipt-title">
-                <h3>Rincian Investasi</h3>
-                <p style="color:var(--gray-400); font-size:0.9rem">{{ $admissionWave?->wave_name ?? 'Tahun Ajaran 2026/2027' }}</p>
-              </div>
-              <div class="receipt-meta">
-                <div style="font-size:0.75rem; font-weight:700; color:var(--gray-300); text-transform:uppercase; letter-spacing:0.1em">SD Alam Selfa</div>
-                <div style="font-family:monospace; color:var(--gray-400)">INV-SD-{{ date('Y') }}</div>
+              <div class="program-metric-box">
+                <span class="metric-label">Formulir Pendaftaran</span>
+                <span class="metric-value" style="font-size:1.05rem; color:#1e293b;">{{ $admissionFee?->formatted_registration_fee ?? 'Rp 200.000' }}</span>
+                <span class="metric-sub">Registrasi Calon Santri</span>
               </div>
             </div>
 
-            <div class="receipt-body">
-              <div class="receipt-item">
-                <div class="item-info">
-                  <div class="item-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                  </div>
-                  <div class="item-details">
-                    <h4>Formulir Pendaftaran</h4>
-                  </div>
-                </div>
-                <div class="item-price">{{ $admissionFee?->formatted_registration_fee ?? 'Rp 200.000' }}</div>
+            @if($admissionFee?->uniform_fee)
+              <div style="display:inline-flex; align-items:center; gap:0.5rem; background:#f8fafc; border:1px solid #e2e8f0; padding:0.4rem 0.85rem; border-radius:0.6rem; font-size:0.82rem; color:#475569; margin-bottom:1rem;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"></path></svg>
+                <span>Seragam & Perlengkapan: <strong>{{ $admissionFee->formatted_uniform_fee }}</strong></span>
               </div>
+            @endif
 
-              <div class="receipt-item">
-                <div class="item-info">
-                  <div class="item-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                  </div>
-                  <div class="item-details">
-                    <h4>Uang Pangkal / Masuk</h4>
-                  </div>
-                </div>
-                <div class="item-price">{{ $admissionFee?->formatted_enrollment_fee ?? 'Rp 6.500.000' }}</div>
-              </div>
-              
-              <div class="receipt-item">
-                <div class="item-info">
-                  <div class="item-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-                  </div>
-                  <div class="item-details">
-                    <h4>SPP Bulanan</h4>
-                  </div>
-                </div>
-                <div class="item-price">{{ $admissionFee?->formatted_monthly_tuition ?? 'Rp 450.000' }} / bln</div>
-              </div>
-
-              @if($admissionFee?->uniform_fee)
-                <div class="receipt-item">
-                  <div class="item-info">
-                    <div class="item-icon">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"></path></svg>
+            <!-- Features Grid -->
+            @if(!empty($admissionFee?->features))
+              <div class="program-features-section">
+                <span class="program-features-heading">Fasilitas & Keunggulan Program:</span>
+                <div class="program-features-grid">
+                  @foreach($admissionFee->features as $feat)
+                    <div class="program-feature-item">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      <span>{{ $feat }}</span>
                     </div>
-                    <div class="item-details">
-                      <h4>Seragam & Perlengkapan</h4>
-                    </div>
-                  </div>
-                  <div class="item-price">{{ $admissionFee->formatted_uniform_fee }}</div>
+                  @endforeach
                 </div>
-              @endif
+              </div>
+            @endif
 
-              @if(!empty($admissionFee?->features))
-                <div style="margin-top:1rem; padding-top:1rem; border-top:1px dashed var(--gray-200);">
-                  <div style="font-size:0.85rem; font-weight:600; color:var(--emerald-800); margin-bottom:0.5rem;">Fasilitas Termasuk:</div>
-                  <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.35rem; font-size:0.8rem; color:var(--gray-600);">
-                    @foreach($admissionFee->features as $feat)
-                      <li style="display:flex; align-items:center; gap:0.5rem;">
-                        <span style="color:#059669; font-weight:bold;">✓</span> {{ $feat }}
-                      </li>
-                    @endforeach
-                  </ul>
-                </div>
-              @endif
+            @if($admissionFee?->notes)
+              <p class="program-spmb-notes">* {{ $admissionFee->notes }}</p>
+            @endif
+          </div>
 
-              @if($admissionFee?->notes)
-                <p style="font-size:0.75rem; color:var(--gray-500); margin-top:0.75rem; font-style:italic;">* {{ $admissionFee->notes }}</p>
-              @endif
+          <!-- Side Action Card -->
+          <div class="program-spmb-side">
+            <div class="program-spmb-wave-card">
+              <span class="spmb-wave-badge">{{ $admissionWave?->wave_name ?? 'SPMB TA 2026/2027' }}</span>
+              <h4 class="spmb-wave-name">Pendaftaran Santri Baru SD</h4>
+              <div class="spmb-wave-date-range">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect><line x1="16" x2="16" y1="2" y2="6"></line><line x1="8" x2="8" y1="2" y2="6"></line><line x1="3" x2="21" y1="10" y2="10"></line></svg>
+                <span>
+                  @if($admissionWave && $admissionWave->start_date && $admissionWave->end_date)
+                    {{ $admissionWave->start_date->format('d M') }} — {{ $admissionWave->end_date->format('d M Y') }}
+                  @else
+                    Pendaftaran Sedang Dibuka
+                  @endif
+                </span>
+              </div>
+
+              <ul class="program-quick-checklist">
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>Usia Kelas 1 SD: Minimal 6 Tahun per Juli</span>
+                </li>
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>Fotokopi Akta Kelahiran & Kartu Keluarga (2 lembar)</span>
+                </li>
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>Pas foto 3x4 (3 lembar) & Fotokopi KTP Orang Tua</span>
+                </li>
+              </ul>
             </div>
 
-            <div class="receipt-footer" style="display:flex; flex-direction:column; gap:0.75rem; align-items:stretch;">
+            <div class="program-spmb-actions">
               @php
                 $sdWa = $admissionWave?->clean_whatsapp ?? '6282122073707';
                 $sdMsg = rawurlencode('Bismillah Ustadz, saya ingin mendaftar dan menanyakan rincian pendaftaran SD Alam Sayf El Falah.');
               @endphp
-              <a href="https://wa.me/{{ $sdWa }}?text={{ $sdMsg }}" target="_blank" rel="noopener noreferrer" class="hero-cta" style="width:100%; text-align:center; justify-content:center; padding:0.85rem 1.5rem;">
-                Daftar via WhatsApp
+              <a href="https://wa.me/{{ $sdWa }}?text={{ $sdMsg }}" target="_blank" rel="noopener noreferrer" class="btn-spmb-wa">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                Konsultasi & Daftar SD (WhatsApp)
               </a>
               @if($admissionWave?->brochure_file)
-                <a href="{{ asset('storage/' . $admissionWave->brochure_file) }}" target="_blank" class="hero-cta" style="width:100%; text-align:center; justify-content:center; background:transparent; border:1px solid var(--emerald-600); color:var(--emerald-700); padding:0.75rem 1.5rem;">
+                <a href="{{ asset('storage/' . $admissionWave->brochure_file) }}" target="_blank" class="btn-spmb-pdf">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="12" x2="12" y2="3"></line></svg>
                   Unduh Brosur SD (PDF)
                 </a>
               @endif
+              <div class="program-spmb-guarantee">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                <span>Panitia PPDB siap melayani pertanyaan Ayah & Bunda</span>
+              </div>
             </div>
           </div>
         </div>
