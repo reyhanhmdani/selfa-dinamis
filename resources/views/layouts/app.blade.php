@@ -43,11 +43,11 @@
 
 
 
+    <!-- Navbar (Fixed to Viewport) -->
+    @include('partials.navbar')
+
     <!-- Main Content Wrapper -->
     <div class="page-content relative z-10">
-        <!-- Navbar -->
-        @include('partials.navbar')
-
         <!-- Content -->
         @yield('content')
 
