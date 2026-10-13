@@ -40,7 +40,7 @@ class AdmissionWaveResource extends Resource
 
     public static function getNavigationGroup(): ?string
     {
-        return 'SPMB / PPDB';
+        return 'Pusat Informasi & SPMB';
     }
 
     public static function form(Schema $schema): Schema

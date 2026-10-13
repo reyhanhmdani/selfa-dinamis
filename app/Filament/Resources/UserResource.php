@@ -26,25 +26,25 @@ class UserResource extends Resource
 
     public static function getNavigationLabel(): string
     {
-        return 'User Management';
+        return 'Kelola Admin';
     }
 
     public static function getModelLabel(): string
     {
-        return 'User';
+        return 'Admin';
     }
 
     public static function getPluralModelLabel(): string
     {
-        return 'Users';
+        return 'Kelola Admin';
     }
 
     public static function getNavigationGroup(): ?string
     {
-        return 'Settings';
+        return 'Pengaturan';
     }
 
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 1;
 
     public static function form(Schema $schema): Schema
     {

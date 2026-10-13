@@ -16,6 +16,8 @@ class AdmissionFeeResource extends Resource
 {
     protected static ?string $model = AdmissionFee::class;
 
+    protected static bool $shouldRegisterNavigation = false;
+
     protected static ?int $navigationSort = 2;
 
     public static function getNavigationIcon(): string

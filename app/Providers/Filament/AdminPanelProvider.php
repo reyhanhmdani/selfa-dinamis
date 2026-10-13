@@ -40,6 +40,18 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->font('Plus Jakarta Sans')
             ->sidebarCollapsibleOnDesktop()
+            ->navigationGroups([
+                \Filament\Navigation\NavigationGroup::make('KB & TK')
+                    ->icon('heroicon-o-sparkles'),
+                \Filament\Navigation\NavigationGroup::make('SD Alam')
+                    ->icon('heroicon-o-academic-cap'),
+                \Filament\Navigation\NavigationGroup::make('Pondok Pesantren')
+                    ->icon('heroicon-o-building-library'),
+                \Filament\Navigation\NavigationGroup::make('Pusat Informasi & SPMB')
+                    ->icon('heroicon-o-information-circle'),
+                \Filament\Navigation\NavigationGroup::make('Pengaturan')
+                    ->icon('heroicon-o-cog-6-tooth'),
+            ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([
