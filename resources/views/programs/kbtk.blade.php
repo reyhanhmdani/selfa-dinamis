@@ -246,7 +246,87 @@
   </section>
 
   <!-- ============ SCHOOL NEWS SLIDER ============ -->
-  <x-news-slider />
+  <x-news-slider :news="$news" />
+
+  <!-- ============ SPMB & BIAYA PENDIDIKAN KB & TK ============ -->
+  @if($admissionFee)
+  <section class="section-padding bg-gradient-subtle" id="biaya">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-badge">Informasi SPMB & Biaya</span>
+        <h2 class="section-title">Biaya Pendidikan KB & TK</h2>
+        <div class="section-line"></div>
+        <p class="section-desc">
+          Investasi terbaik di masa keemasan (golden age) ananda dengan bimbingan adab dan kecintaan pada Al-Qur'an.
+        </p>
+      </div>
+
+      <div class="fees-grid stagger-container" style="max-width: 600px; margin: 0 auto;">
+        <div class="fee-card featured stagger-item">
+          <div class="fee-featured-badge">{{ $admissionWave?->wave_name ?? 'Pendaftaran Dibuka' }}</div>
+          <div class="fee-card-header">
+            <span class="fee-program-type">KB & TK Sayf El Falah</span>
+            <h3 class="fee-program-title">{{ $admissionFee->title }}</h3>
+          </div>
+
+          <div class="fee-pricing-box">
+            <span class="fee-label">Uang Pangkal / Masuk</span>
+            <div class="fee-amount">{{ $admissionFee->formatted_enrollment_fee }}</div>
+            <div class="fee-monthly">
+              <span>SPP: <strong>{{ $admissionFee->formatted_monthly_tuition }}</strong> / bulan</span>
+            </div>
+          </div>
+
+          <div class="fee-details-list">
+            <div class="fee-detail-row">
+              <span>Formulir Pendaftaran:</span>
+              <strong>{{ $admissionFee->formatted_registration_fee }}</strong>
+            </div>
+            @if($admissionFee->uniform_fee)
+              <div class="fee-detail-row">
+                <span>Seragam & Perlengkapan:</span>
+                <strong>{{ $admissionFee->formatted_uniform_fee }}</strong>
+              </div>
+            @endif
+          </div>
+
+          @if(!empty($admissionFee->features))
+            <div class="fee-features-box">
+              <span class="fee-features-title">Fasilitas Termasuk:</span>
+              <ul class="fee-features-list">
+                @foreach($admissionFee->features as $feat)
+                  <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span>{{ $feat }}</span>
+                  </li>
+                @endforeach
+              </ul>
+            </div>
+          @endif
+
+          @if($admissionFee->notes)
+            <p class="fee-notes">* {{ $admissionFee->notes }}</p>
+          @endif
+
+          <div class="fee-card-action" style="display:flex; flex-direction:column; gap:0.75rem;">
+            @php
+              $kbtkWa = $admissionWave?->clean_whatsapp ?? '6282122073707';
+              $kbtkMsg = rawurlencode('Bismillah Ustadzah, saya ingin menanyakan pendaftaran untuk jenjang KB & TK Sayf El Falah.');
+            @endphp
+            <a href="https://wa.me/{{ $kbtkWa }}?text={{ $kbtkMsg }}" target="_blank" rel="noopener noreferrer" class="fee-cta-btn">
+              Konsultasi & Daftar (WhatsApp)
+            </a>
+            @if($admissionWave?->brochure_file)
+              <a href="{{ asset('storage/' . $admissionWave->brochure_file) }}" target="_blank" class="spmb-btn spmb-btn-brochure" style="justify-content:center; text-align:center;">
+                Unduh Brosur (PDF)
+              </a>
+            @endif
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  @endif
 
   <!-- ============ STATISTICS ============ -->
   <section class="stats-section section-padding">
@@ -329,7 +409,7 @@
             </div>
             <div>
               <h4>Telepon</h4>
-              <p>0811 2653 630 (WhatsApp)</p>
+              <p>{{ $admissionWave?->whatsapp_number ?? '0821-2207-3707' }} (WhatsApp)</p>
             </div>
           </div>
           <div class="contact-item">
@@ -338,7 +418,7 @@
             </div>
             <div>
               <h4>Email</h4>
-              <p>Sayfelfalah@gmail.com</p>
+              <p>info@sayfelfalah.sch.id</p>
             </div>
           </div>
           <div class="contact-item">

@@ -31,7 +31,11 @@ class PageController extends Controller
             ->latest()
             ->get();
 
-        return view('programs.sd', compact('galleries'));
+        $admissionWave = AdmissionWave::active()->latest('id')->first();
+        $admissionFee = AdmissionFee::published()->where('program_type', 'sd')->first();
+        $news = News::published()->latest('published_at')->take(5)->get();
+
+        return view('programs.sd', compact('galleries', 'admissionWave', 'admissionFee', 'news'));
     }
 
     public function ponpes(): View
@@ -42,7 +46,11 @@ class PageController extends Controller
             ->latest()
             ->get();
 
-        return view('programs.ponpes', compact('galleries'));
+        $admissionWave = AdmissionWave::active()->latest('id')->first();
+        $admissionFee = AdmissionFee::published()->where('program_type', 'ponpes')->first();
+        $news = News::published()->latest('published_at')->take(5)->get();
+
+        return view('programs.ponpes', compact('galleries', 'admissionWave', 'admissionFee', 'news'));
     }
 
     public function kbtk(): View
@@ -53,7 +61,11 @@ class PageController extends Controller
             ->latest()
             ->get();
 
-        return view('programs.kbtk', compact('galleries'));
+        $admissionWave = AdmissionWave::active()->latest('id')->first();
+        $admissionFee = AdmissionFee::published()->where('program_type', 'kbtk')->first();
+        $news = News::published()->latest('published_at')->take(5)->get();
+
+        return view('programs.kbtk', compact('galleries', 'admissionWave', 'admissionFee', 'news'));
     }
 
     public function berita(): View
